@@ -1,0 +1,9 @@
+.action_drawer {
+  @apply absolute bg-white/50 top-0 right-[-100%] bottom-0 w-[60%] backdrop-blur-sm;
+  transition: right 0.4s ease-in;
+
+  &[class*='active'] {
+    @apply right-0;
+    transition: right 0.4s ease-out;
+  }
+}

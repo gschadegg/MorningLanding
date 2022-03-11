@@ -1,0 +1,11 @@
+.dateStamp {
+  @apply text-slate-50 relative mt-4 text-center sm:text-left sm:mt-0 sm:ml-14 sm:pl-14 sm:before:bg-slate-50 sm:before:w-[2px] sm:before:h-[20px] sm:before:left-0 sm:before:top-[50%] sm:before:translate-y-[-50%] sm:before:absolute;
+}
+.dateStamp_day {
+  @apply font-bold text-xl capitalize leading-6 tracking-wider;
+  font-variant: small-caps;
+}
+.dateStamp_date {
+  @apply text-base capitalize leading-3 tracking-widest;
+  font-variant: small-caps;
+}

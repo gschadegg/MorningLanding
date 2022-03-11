@@ -1,0 +1,9 @@
+.settings_panel {
+  @apply absolute bottom-0 top-[100%] left-[-100%] w-[620px] bg-black text-white;
+  transition: all 0.4s ease-in;
+
+  &[class*='active'] {
+    @apply left-0 top-0;
+    transition: all 0.4s ease-out;
+  }
+}

@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+// The base layer is for things like reset rules or default styles applied to plain HTML elements.
+// The components layer is for class-based styles that you want to be able to override with utilities.
+// The utilities layer is for small, single-purpose classes that should always take precedence over any other styles.
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    @apply font-display;
+  }
+  .btn_outlined {
+    @apply border-white border-2 rounded-full;
+    &.active {
+      @apply z-[100] relative;
+    }
+  }
+  .btn_settingsIcon {
+    @apply top-[100%];
+    transition: top 0.4s ease-in;
+    transition-delay: 0.2s;
+    &.active {
+      @apply z-[100] absolute top-[54px];
+      transition: top 0.4s ease-out;
+      transition-delay: 0.2s;
+    }
+  }
+}
+@layer components {
+}
+@layer utilities {
+}

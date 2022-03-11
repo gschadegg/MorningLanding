@@ -1,0 +1,26 @@
+.clock_wrap {
+  @apply capitalize text-slate-50;
+  font-size: 2rem;
+  font-variant: small-caps;
+}
+.clock_greeting {
+  @apply text-2xl tracking-wider mb-[4px];
+}
+.clock_time {
+  @apply flex items-baseline;
+}
+.clock {
+  @apply relative items-baseline flex text-center;
+  .clock_hours {
+    @apply text-[7rem] leading-[9rem] font-bold md:text-[9rem];
+  }
+  .clock_seconds {
+    @apply min-w-[46px] text-slate-50/70 hidden md:block;
+  }
+  .clock_ampm {
+    @apply text-base absolute top-[28px] right-[-24px] text-slate-50/70 md:top-[20px] md:right-[20px];
+  }
+}
+.clock_zone {
+  @apply ml-6 font-light text-4xl hidden md:block;
+}

@@ -1,0 +1,11 @@
+.locationBlock_topBar {
+  @apply flex flex-col items-center sm:flex-row;
+}
+.locationBlock_city {
+  @apply capitalize bg-white/10 rounded-xl inline-flex text-slate-50 tracking-widest py-2 px-4 items-baseline text-xl mt-6;
+  font-variant: small-caps;
+
+  span {
+    @apply ml-3 text-3xl;
+  }
+}

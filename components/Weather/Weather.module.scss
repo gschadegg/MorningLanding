@@ -1,0 +1,15 @@
+.weather {
+  @apply text-slate-50 flex items-center;
+}
+.weather_icon {
+  @apply mr-3;
+}
+.weather_temp {
+  @apply text-3xl font-bold;
+  .weather_degree {
+    @apply font-light ml-[2px];
+  }
+}
+.weather_unit {
+  @apply text-lg ml-[4px];
+}

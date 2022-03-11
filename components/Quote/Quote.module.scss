@@ -1,0 +1,10 @@
+.quote {
+  @apply text-slate-50 mt-[4vh] max-w-[400px];
+}
+
+.quote_block {
+  @apply font-body text-lg mb-5;
+}
+.quote_author {
+  @apply font-body font-bold not-italic text-base;
+}
