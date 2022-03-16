@@ -1,5 +1,5 @@
 import React from 'react'
-import { PinnedTasksContextProvider } from '../../store/pinnedTasks-contex'
+import { PinnedTasksContextProvider } from '../../store/pinnedTasks-context'
 import BigThree from './BigThree/BigThree'
 import PinnedTaskList from './PinnedTasks/PinnedTaskList'
 import OutlinedButton from '../UI/Buttons/OutlinedButton'

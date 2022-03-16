@@ -1,6 +1,6 @@
 import React from 'react'
 import { Icon } from '@iconify/react'
-
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 import styles from './Settings.module.scss'
 
 export default function Settings({ toggleSettingsHandler, classes }) {
@@ -18,53 +18,92 @@ export default function Settings({ toggleSettingsHandler, classes }) {
         </h2>
         <button onClick={toggleSettingsHandler}>close</button>
       </section>
-      <form>
-        <div>
-          <label>Your Location</label>
-          <input />
-        </div>
-        <div>
-          Pick Your Widgets{' '}
-          <div>
-            <label className="container">
-              Quick Links
-              <input type="checkbox" />
-              <span className="checkmark"></span>
-            </label>
-            <label className="container">
-              Reminders
-              <input type="checkbox" />
-              <span className="checkmark"></span>
-            </label>
-            <label className="container">
-              Daily Big Three
-              <input type="checkbox" />
-              <span className="checkmark"></span>
-            </label>
-            <label className="container">
-              Pinned Tasks
-              <input type="checkbox" />
-              <span className="checkmark"></span>
-            </label>
-            <label className="container">
-              Inspirational Quotes
-              <input type="checkbox" />
-              <span className="checkmark"></span>
-            </label>
-            <label className="container">
-              Spotify Player
-              <input type="checkbox" />
-              <span className="checkmark"></span>
-            </label>
-            <label className="container">
-              Gmail Calendar
-              <input type="checkbox" />
-              <span className="checkmark"></span>
-            </label>
-          </div>
-        </div>
-        <button>Save Settings</button>
-      </form>
+      <Formik
+        initialValues={{ location: '', activeWidgets: [] }}
+        validate={(values) => {
+          const errors = {}
+          if (
+            values.location &&
+            !/^([^,]+), ([A-Z]{2})$/i.test(values.location)
+          ) {
+            errors.location = 'Invalid location address'
+          }
+          return errors
+        }}
+        onSubmit={(values, { setSubmitting }) => {
+          setTimeout(() => {
+            alert(JSON.stringify(values, null, 2))
+            setSubmitting(false)
+          }, 400)
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <Field type="text" name="location" />
+            <ErrorMessage name="location" component="div" />
+            <div id="checkbox-group">Pick Your Widgets</div>
+            <div role="group" aria-labelledby="checkbox-group">
+              <label>
+                <Field
+                  type="checkbox"
+                  name="activeWidgets"
+                  value="Quick Links"
+                />
+                <span className="checkmark"></span>
+                Quick Links
+              </label>
+              <label>
+                <Field
+                  type="checkbox"
+                  name="activeWidgets"
+                  value="Daily Big Three"
+                />
+                <span className="checkmark"></span>
+                Daily Big Three
+              </label>
+              <label>
+                <Field
+                  type="checkbox"
+                  name="activeWidgets"
+                  value="Pinned Reminders"
+                />
+                <span className="checkmark"></span>
+                Pinned Reminders
+              </label>
+              <label>
+                <Field
+                  type="checkbox"
+                  name="activeWidgets"
+                  value="Inspirational Quotes"
+                />
+                <span className="checkmark"></span>
+                Inspirational Quotes
+              </label>
+              <label>
+                <Field
+                  type="checkbox"
+                  name="activeWidgets"
+                  value="Spotify Player"
+                />
+                <span className="checkmark"></span>
+                Spotify Player
+              </label>
+              <label>
+                <Field
+                  type="checkbox"
+                  name="activeWidgets"
+                  value="Gmail Calendar"
+                />
+                <span className="checkmark"></span>
+                Gmail Calendar
+              </label>
+            </div>
+            <button type="submit" disabled={isSubmitting}>
+              Submit
+            </button>
+          </Form>
+        )}
+      </Formik>
     </article>
   )
 }

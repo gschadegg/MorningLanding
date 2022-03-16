@@ -58,37 +58,7 @@ export default function Home() {
               View the Day's Actions
             </OutlinedButton>
           )}
-
-          {/* <OutlinedButton
-            classes={[
-              `${
-                showDrawer ? 'active dark btn-drawerToggle' : 'btn-drawerToggle'
-              }`,
-            ]}
-            onClick={toggleActionDrawer}
-          >
-            {showDrawer ? (
-              <Icon
-                icon="clarity:circle-arrow-line"
-                width={24}
-                rotate={1}
-                inline={true}
-              />
-            ) : (
-              <Icon
-                icon="clarity:circle-arrow-line"
-                width={24}
-                rotate={3}
-                inline={true}
-              />
-            )}
-            {showDrawer ? 'Close Actions' : "View the Day's Actions"}
-          </OutlinedButton> */}
         </section>
-        {/* <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p> */}
         <Drawer
           toggleDrawer={toggleActionDrawer}
           classes={[showDrawer ? 'active' : '']}
@@ -98,16 +68,6 @@ export default function Home() {
           classes={[showSettings ? 'active' : '']}
         />
       </main>
-
-      {/* <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-        </a>
-      </footer> */}
     </GeneralLayout>
   )
 }

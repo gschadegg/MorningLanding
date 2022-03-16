@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect, useCallback } from 'react'
-import PinnedTasksContext from '../../../store/pinnedTasks-contex'
+import PinnedTasksContext from '../../../store/pinnedTasks-context'
 import styles from './PinnedTasks.module.scss'
 import DrawerWidget from '../DrawerWidget/DrawerWidget'
 import { Icon } from '@iconify/react'
