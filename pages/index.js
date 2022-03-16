@@ -24,7 +24,7 @@ export default function Home() {
   }
   return (
     <GeneralLayout>
-      <DefaultHead title="Morning Landing" />
+      <DefaultHead title={'Morning Landing'} />
       <main className={styles.main}>
         <section className={styles.main_col}>
           <LocationBlock />
@@ -34,7 +34,7 @@ export default function Home() {
             onClick={toggleSettingsPanel}
           >
             <Icon
-              icon="clarity:settings-solid"
+              icon={'clarity:settings-solid'}
               width={36}
               className={styles.settings_icon}
             />
@@ -50,7 +50,7 @@ export default function Home() {
               onClick={toggleActionDrawer}
             >
               <Icon
-                icon="clarity:circle-arrow-line"
+                icon={'clarity:circle-arrow-line'}
                 width={24}
                 rotate={3}
                 inline={true}
