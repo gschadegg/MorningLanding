@@ -61,7 +61,7 @@ export default function BigThreeTask({ taskNum }) {
       bigThreeTasks[taskNum].completed = status
       localStorage.setItem('ML-bigThreeTasks', JSON.stringify(bigThreeTasks))
     }
-  }, [status])
+  }, [status, taskNum])
 
   return (
     <div className={`${styles.bigThreeTask} ${status ? styles.completed : ''}`}>

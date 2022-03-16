@@ -24,7 +24,11 @@ const Clock = () => {
         hours = hours ? hours : 12
         if(ampm === 'PM'){
           let greeting = 'Morning'
-          greeting = hours >= 6 ? 'Evening' : 'Afternoon'
+          if(hours >= 6){
+            greeting = 'Evening' 
+          }else{
+            greeting = 'Afternoon'
+          }
           document.getElementById('clock_greeting')?.textContent = `Good ${greeting}, It's Currently`
         }
         let timeDisplay = `${hours}:${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}`
