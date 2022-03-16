@@ -32,7 +32,7 @@ export default function PinnedTask({ task, id, completed = false }) {
 
   useEffect(() => {
     pinnedTaskCTX.updateStatusFunc(id, status)
-  }, [status])
+  }, [status, id])
 
   return (
     <li className={`${styles.pinnedTask} ${status ? styles.completed : ''}`}>

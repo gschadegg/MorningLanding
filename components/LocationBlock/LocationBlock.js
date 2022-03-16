@@ -14,10 +14,14 @@ const LocationBlock = () => {
   const notificationCTX = useContext(NotificationContext)
 
   const fetchlocation = async (lat, lng) => {
-    let { data } = await services.getLocation(lat, lng)
-    if (data) {
-      window.localStorage.setItem('ML-location', JSON.stringify(data[0]))
-      setLocation(data[0])
+    let { features } = await services.getLocation(lat, lng)
+    console.log(features)
+    if (features) {
+      window.localStorage.setItem(
+        'ML-location',
+        JSON.stringify(features[0].properties)
+      )
+      setLocation(features[0].properties)
     } else {
       notificationCTX.setUpNotification(
         "We couldn't find your location, try manually setting your hometown!",
@@ -30,11 +34,9 @@ const LocationBlock = () => {
     const locationCordStored = window.localStorage.getItem('ML-locationCord')
     const locationStored = window.localStorage.getItem('ML-location')
     if (!location) {
-      if (
-        locationStored &&
-        (locationStored?.userSet ||
-          new Date().getTime() < locationStored?.expiryData)
-      ) {
+      if (locationStored) {
+        // (locationStored?.userSet ||
+        //   new Date().getTime() < locationStored?.expiryData)
         const parsedLocationStored = JSON.parse(locationStored)
         setLocation(parsedLocationStored)
       } else {
@@ -104,8 +106,8 @@ const LocationBlock = () => {
           <h2 className={styles.locationBlock_city}>
             In{' '}
             <span>
-              {location?.locality && <>{location?.locality},</>}{' '}
-              {location?.region_code} - {location?.country_code}
+              {location?.city && <>{location?.city},</>} {location?.state_code}{' '}
+              - {location?.country_code.toUpperCase()}
             </span>
           </h2>
         ) : (

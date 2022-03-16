@@ -11,7 +11,9 @@ const getWeather = async (location, unit = 'f') => {
   const weatherURL = `http://api.weatherstack.com/current?access_key=${
     process.env.NEXT_PUBLIC_WEATHER_API_KEY
   }&query=${
-    location?.locality ? location?.locality : location?.region
+    location?.city
+      ? `${location?.city},${location?.state_code}`
+      : location?.state_code
   }&units=${unit}`
 
   const res = await axios.get(`${weatherURL}`)
@@ -19,8 +21,15 @@ const getWeather = async (location, unit = 'f') => {
   return res.data
 }
 
+// const getLocation = async (lat, lng) => {
+//   const locationURL = `http://api.positionstack.com/v1/reverse?access_key=${process.env.NEXT_PUBLIC_POSITIONSTACK_KEY}&query=${lat},${lng}`
+//   const res = await axios.get(`${locationURL}`)
+//   return res.data
+// }
+
 const getLocation = async (lat, lng) => {
-  const locationURL = `http://api.positionstack.com/v1/reverse?access_key=${process.env.NEXT_PUBLIC_POSITIONSTACK_KEY}&query=${lat},${lng}`
+  const locationURL = `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&apiKey=${process.env.NEXT_PUBLIC_GEOAPIFY_KEY}`
+  // const locationURL = `http://api.positionstack.com/v1/reverse?access_key=${process.env.NEXT_PUBLIC_POSITIONSTACK_KEY}&query=${lat},${lng}`
   const res = await axios.get(`${locationURL}`)
   return res.data
 }
