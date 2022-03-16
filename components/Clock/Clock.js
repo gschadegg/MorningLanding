@@ -25,7 +25,8 @@ const Clock = () => {
         if(ampm === 'PM'){
           let greeting = 'Morning'
           greeting = (hours >= 6) ? "Evening" : "Afternoon";
-          document.getElementById('clock_greeting')?.textContent = `Good ${greeting}, It's Currently`
+          const greetingText = `Good ${greeting}, It's Currently`
+          document.getElementById('clock_greeting')?.textContent = greetingText
         }
         let timeDisplay = `${hours}:${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}`
         let secondDisplay = `:${date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds()}`
