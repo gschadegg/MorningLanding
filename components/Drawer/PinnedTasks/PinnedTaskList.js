@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect, useCallback } from 'react'
 import PinnedTasksContext from '../../../store/pinnedTasks-contex'
 import styles from './PinnedTasks.module.scss'
 import DrawerWidget from '../DrawerWidget/DrawerWidget'
+import { Icon } from '@iconify/react'
 
 export default function PinnedTaskList() {
   const [newTask, setNewTask] = useState('')
@@ -12,7 +13,7 @@ export default function PinnedTaskList() {
     setNewTask(e.target.value)
   }
 
-  const onBlurHandler = (e) => {
+  const onBlurHandler = () => {
     if (newTask) {
       pinnedTaskCTX.addTaskFunc(newTask)
       setNewTask('')
@@ -27,13 +28,12 @@ export default function PinnedTaskList() {
   }
 
   return (
-    <DrawerWidget title={`Pinned Tasks`} classes={[`column`]}>
+    <DrawerWidget title={`Pinned Reminders`} classes={[`column`]}>
       <ul id="pinnedTask_list" className={styles.pinnedTask_list}>
-        {pinnedTaskCTX.taskList}
-      </ul>
-      <ul>
         <li className={styles.newPinnedTask}>
-          <button>complete?</button>
+          <button onClick={onBlurHandler} title="Add New Task">
+            <Icon icon="fluent:add-16-filled" width={20} />
+          </button>
           <input
             onChange={updateTaskHandler}
             onKeyDown={onKeyDownHandler}
@@ -42,6 +42,7 @@ export default function PinnedTaskList() {
             placeholder="Click to add a pinned task"
           />
         </li>
+        {pinnedTaskCTX.taskList}
       </ul>
     </DrawerWidget>
   )

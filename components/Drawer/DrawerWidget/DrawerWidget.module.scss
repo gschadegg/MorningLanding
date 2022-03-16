@@ -1,5 +1,5 @@
 .widget_container {
-  @apply text-darkBlack;
+  @apply text-darkBlack flex flex-col;
   h2 {
     @apply text-2xl font-bold capitalize mb-6;
     font-variant: small-caps;
@@ -8,7 +8,10 @@
     @apply flex flex-col md:flex-row;
   }
   & + .widget_container {
-    @apply mt-16;
+    @apply flex flex-col flex-auto mt-16;
+  }
+  & [class*='column'] {
+    @apply md:flex-[1_1_0] overflow-y-auto;
   }
 }
 

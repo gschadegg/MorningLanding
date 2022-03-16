@@ -16,7 +16,7 @@
     @apply text-darkBlack border-darkBlack/60;
     &:hover,
     &:focus {
-      @apply bg-darkBlack/20;
+      @apply bg-white/30;
     }
   }
   &[class*='active'] {

@@ -1,0 +1,64 @@
+// .pinnedTask_list {
+//   @apply flex-1 overflow-y-scroll;
+// }
+
+.pinnedTask {
+  @apply bg-white/20 backdrop-blur-sm rounded-lg  min-h-[48px] px-6 py-3 flex mb-1 flex-1 transition-all;
+
+  input {
+    @apply bg-transparent flex-1 mx-3 rounded-lg px-2;
+    &:focus {
+      @apply bg-white/80 outline-0;
+      & + .pinnedTask_delete {
+        @apply block;
+      }
+    }
+  }
+  .pinnedTask_delete {
+    @apply hidden text-darkBlack/50;
+    &:hover,
+    &:focus {
+      @apply text-darkBlack/80;
+    }
+  }
+  &:hover,
+  &:focus {
+    @apply bg-white/50;
+    .pinnedTask_delete {
+      @apply block;
+    }
+  }
+  &.completed {
+    @apply bg-[#DDFFD1]/40;
+    input {
+      @apply line-through;
+    }
+  }
+}
+
+.newPinnedTask {
+  @apply bg-white/20 backdrop-blur-sm rounded-lg  min-h-[48px] px-6 py-3 flex mb-1 flex-1 transition-all items-center;
+  button {
+    @apply rounded-lg p-[4px] text-darkBlack/50;
+    &:hover,
+    &:focus {
+      @apply bg-white/90 text-darkBlack/90;
+    }
+  }
+  input {
+    @apply bg-transparent flex-1 mx-3 rounded-lg px-2 py-[4px];
+    &:focus {
+      @apply bg-white/80 outline-0;
+      & + .pinnedTask_delete {
+        @apply block;
+      }
+    }
+  }
+  &:hover,
+  &:focus {
+    @apply bg-white/50;
+    button {
+      @apply text-darkBlack/70;
+    }
+  }
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styles from './BigThree.module.scss'
 import { Icon } from '@iconify/react'
 import { setExpiry } from './../../../utils/index'
+import CompleteButton from '../../UI/Buttons/CompleteButton/CompleteButton'
 
 export default function BigThreeTask({ taskNum }) {
   const [task, setTask] = useState('')
@@ -66,15 +67,14 @@ export default function BigThreeTask({ taskNum }) {
     <div className={`${styles.bigThreeTask} ${status ? styles.completed : ''}`}>
       <span>
         <em>0{taskNum}</em>{' '}
-        <button
+        <CompleteButton
           title={status ? 'Un-Mark Completed Action' : 'Mark Action Complete'}
-          className={styles.btn_taskCheck}
           onClick={toggleTaskStatus}
-        >
-          <Icon icon="ant-design:check-circle-outlined" width={42} />
-        </button>
+          classes={[status ? 'completed' : '']}
+        />
       </span>
       <textarea
+        title="Edit Action Name"
         value={task}
         placeholder="Add an action to focus on for today"
         onChange={updateTaskHandler}

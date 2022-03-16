@@ -1,0 +1,26 @@
+.btn_checkButton {
+  @apply bg-white/30 rounded-[50%] border-white border-2 transition-all shadow-lg;
+  svg {
+    @apply text-darkBlack/40 transition-all;
+  }
+  &:hover,
+  &:focus {
+    @apply bg-white;
+    svg {
+      @apply text-darkBlack/70;
+    }
+  }
+  &[class*='completed'] {
+    @apply bg-[#24C22A]/10;
+    svg {
+      @apply text-[#1C6204]/60;
+    }
+    &:hover,
+    &:focus {
+      @apply bg-[#24C22A]/20;
+      svg {
+        @apply text-[#1C6204]/80;
+      }
+    }
+  }
+}
