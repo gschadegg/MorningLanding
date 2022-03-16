@@ -14,7 +14,7 @@ const Weather = ({ location }) => {
   useEffect(() => {
     const getWeather = async () => {
       let data = await services.getWeather(location)
-      if (data) {
+      if (data && data.location) {
         let expiryData = await setExpiry('every6Hrs')
         window.localStorage.setItem(
           'ML-weather',
@@ -22,6 +22,7 @@ const Weather = ({ location }) => {
         )
         setWeather(data)
       } else {
+        window.localStorage.removeItem('ML-weather')
         notificationCTX.setUpNotification(
           "Weather couldn't be set for your location right now!",
           'error'
@@ -49,20 +50,22 @@ const Weather = ({ location }) => {
       : `${weatherCodes[weather?.current?.weather_code]?.night}`
 
   return (
-    <section className={styles.weather}>
+    <>
       {weather && (
-        <Icon icon={weatherIcon} width={64} className={styles.weather_icon} />
+        <section className={styles.weather}>
+          <Icon icon={weatherIcon} width={64} className={styles.weather_icon} />
+          <div>
+            <span className={styles.weather_temp}>
+              {weather?.current?.temperature}
+              <span className={styles.weather_degree}>&#176;</span>
+            </span>
+            <span className={styles.weather_unit}>
+              {weather?.request?.unit.toUpperCase()}
+            </span>
+          </div>
+        </section>
       )}
-      <div>
-        <span className={styles.weather_temp}>
-          {weather?.current?.temperature}
-          <span className={styles.weather_degree}>&#176;</span>
-        </span>
-        <span className={styles.weather_unit}>
-          {weather?.request?.unit.toUpperCase()}
-        </span>
-      </div>
-    </section>
+    </>
   )
 }
 

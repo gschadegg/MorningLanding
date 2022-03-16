@@ -18,22 +18,33 @@ body {
   html {
     @apply font-display;
   }
-  .btn_outlined {
-    @apply border-white border-2 rounded-full;
-    &.active {
-      @apply z-[100] relative;
-    }
-  }
-  .btn_settingsIcon {
-    @apply top-[100%];
-    transition: top 0.4s ease-in;
-    transition-delay: 0.2s;
-    &.active {
-      @apply z-[100] absolute top-[54px];
-      transition: top 0.4s ease-out;
-      transition-delay: 0.2s;
-    }
-  }
+  // .btn_outlined {
+  //   @apply border-white border-2 rounded-full text-white text-xl font-bold capitalize leading-6 tracking-wider py-2 px-5;
+  //   font-variant: small-caps;
+  //   &.active {
+  //     @apply z-[100] relative;
+  //   }
+  // }
+  // .btn_settingsIcon {
+  //   @apply mt-8 absolute top-0 rounded-full md:mt-0 sm:relative;
+  //   &:hover,
+  //   &:focus {
+  //     @apply bg-white text-darkBlack;
+  //     svg {
+  //       @apply text-darkBlack;
+  //     }
+  //   }
+  // }
+  // .btn_settingsIcon {
+  //   @apply top-[100%] mt-2 md:mt-0;
+  //   transition: top 0.4s ease-in;
+  //   transition-delay: 0.2s;
+  //   &.active {
+  //     @apply z-[100] absolute top-[54px];
+  //     transition: top 0.4s ease-out;
+  //     transition-delay: 0.2s;
+  //   }
+  // }
 }
 @layer components {
 }

@@ -2,6 +2,6 @@
   @apply relative z-0 px-8 relative overflow-hidden;
 
   &:after {
-    @apply absolute z-[-1] bg-[rgba(8,_14,_46,_0.4)] content-[''] inset-0;
+    @apply absolute z-[-1] bg-[rgba(8,_14,_46,_0.6)] content-[''] inset-0;
   }
 }

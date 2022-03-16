@@ -1,5 +1,5 @@
 .locationBlock_topBar {
-  @apply flex flex-col items-center sm:flex-row;
+  @apply flex flex-col items-center mb-[4rem] sm:flex-row md:mb-0;
 }
 .locationBlock_city {
   @apply capitalize bg-white/10 rounded-xl inline-flex text-slate-50 tracking-widest py-2 px-4 items-baseline text-xl mt-6;

@@ -1,0 +1,15 @@
+.widget_container {
+  @apply text-darkBlack;
+  h2 {
+    @apply text-2xl font-bold capitalize mb-6;
+    font-variant: small-caps;
+  }
+  & [class*='inline'] {
+    @apply flex flex-col md:flex-row;
+  }
+  & + .widget_container {
+    @apply mt-16;
+  }
+}
+
+// leading-6 tracking-wider

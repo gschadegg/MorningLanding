@@ -8,9 +8,32 @@
 }
 .main_col {
   @apply flex flex-col justify-between;
+  & + .main_col {
+    @apply flex-1;
+  }
+}
+.btn_settingsIcon {
+  @apply mt-8 flex items-center absolute top-0 rounded-full md:mt-0 sm:relative transition-all mb-[46px] sm:self-start;
+  span {
+    @apply opacity-0  transition-all pr-8 font-bold capitalize tracking-widest;
+    font-variant: small-caps;
+  }
+  svg {
+    @apply mr-0  transition-all;
+  }
+  &:hover,
+  &:focus {
+    @apply bg-white/80 text-darkBlack;
+    span {
+      @apply opacity-100;
+    }
+    svg {
+      @apply mr-4 text-darkBlack;
+    }
+  }
 }
 .settings_icon {
-  @apply text-slate-50 mb-[46px] justify-self-end;
+  @apply text-slate-50  justify-self-end;
 }
 
 // .footer {

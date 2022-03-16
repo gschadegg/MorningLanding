@@ -1,6 +1,6 @@
 export const setExpiry = (ttlLength = 'onceDay') => {
   const now = new Date()
-
+  // const offsetTZ = now.getTimezoneOffset() * 60 * 1000
   //set dismissial to expire to future date, in days
   const ttl = {
     every6Hrs: 6 * 60 * 60 * 1000, // in ms
@@ -9,17 +9,13 @@ export const setExpiry = (ttlLength = 'onceDay') => {
         now.getHours() * 60 * 60 -
         now.getMinutes() * 60 -
         now.getSeconds()) *
-      1000, // in ms
+      1000, // time to midnight in ms
   }
-  console.log(ttl, ttlLength)
   now.setTime(now.getTime() + ttl[ttlLength])
 
   const expiryData = now.getTime()
 
   return expiryData
-  //   console.log('expiryinfo', expiryInfo)
-  // localStorage.setItem('dismissedAlert', JSON.stringify(expiryInfo))
-  // setAlertOpen(prevState => !prevState)
 }
 
 //   quote - once a day (unless off)

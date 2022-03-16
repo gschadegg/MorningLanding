@@ -15,13 +15,13 @@ const getWeather = async (location, unit = 'f') => {
   }&units=${unit}`
 
   const res = await axios.get(`${weatherURL}`)
+  console.log(res)
   return res.data
 }
 
 const getLocation = async (lat, lng) => {
   const locationURL = `http://api.positionstack.com/v1/reverse?access_key=${process.env.NEXT_PUBLIC_POSITIONSTACK_KEY}&query=${lat},${lng}`
   const res = await axios.get(`${locationURL}`)
-  // console.log('inres', res.data)
   return res.data
 }
 

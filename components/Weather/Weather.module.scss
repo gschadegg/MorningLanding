@@ -1,5 +1,5 @@
 .weather {
-  @apply text-slate-50 flex items-center;
+  @apply text-slate-50 flex items-center relative sm:mr-14 sm:pr-14 sm:before:bg-slate-50 sm:before:w-[2px] sm:before:h-[20px] sm:before:right-0 sm:before:top-[50%] sm:before:translate-y-[-50%] sm:before:absolute;
 }
 .weather_icon {
   @apply mr-3;

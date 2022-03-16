@@ -1,5 +1,5 @@
 .dateStamp {
-  @apply text-slate-50 relative mt-4 text-center sm:text-left sm:mt-0 sm:ml-14 sm:pl-14 sm:before:bg-slate-50 sm:before:w-[2px] sm:before:h-[20px] sm:before:left-0 sm:before:top-[50%] sm:before:translate-y-[-50%] sm:before:absolute;
+  @apply text-slate-50 mt-4 text-center sm:text-left sm:mt-0;
 }
 .dateStamp_day {
   @apply font-bold text-xl capitalize leading-6 tracking-wider;

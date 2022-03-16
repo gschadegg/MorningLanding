@@ -14,7 +14,8 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "sass": "^1.49.8",
-    "swr": "^1.2.2"
+    "swr": "^1.2.2",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@iconify/react": "^3.1.4",

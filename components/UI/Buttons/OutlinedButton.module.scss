@@ -1,0 +1,32 @@
+.btn_outlined {
+  @apply flex items-center justify-between border-white border-2 rounded-full text-white text-xl font-bold capitalize leading-6 tracking-wider py-2 px-5 transition-all;
+  font-variant: small-caps;
+  svg {
+    @apply mr-4 transition-all;
+  }
+  &:hover,
+  &:focus {
+    @apply bg-white/10;
+    svg {
+      @apply mr-6;
+    }
+  }
+  &[class*='dark'],
+  &.dark {
+    @apply text-darkBlack border-darkBlack/60;
+    &:hover,
+    &:focus {
+      @apply bg-darkBlack/20;
+    }
+  }
+  &[class*='active'] {
+    @apply z-[100] relative;
+  }
+  &[class*='btn-drawerToggle'] {
+    @apply mt-[80px] sm:mt-[12px] self-center md:self-end;
+
+    &[class*='active'] {
+      @apply mb-[16px]  md:self-end;
+    }
+  }
+}
