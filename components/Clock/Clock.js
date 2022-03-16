@@ -26,13 +26,13 @@ const Clock = () => {
           let greeting = 'Morning'
           greeting = (hours >= 6) ? "Evening" : "Afternoon";
           const greetingText = `Good ${greeting}, It's Currently`
-          document.getElementById('clock_greeting')?.textContent = greetingText
+          document.getElementById('clock_greeting')?.innerText = greetingText
         }
         let timeDisplay = `${hours}:${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}`
         let secondDisplay = `:${date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds()}`
-        document.getElementById('clock_hours')?.textContent = timeDisplay
-        document.getElementById('clock_seconds')?.textContent = secondDisplay
-        document.getElementById('clock_ampm')?.textContent = ampm
+        document.getElementById('clock_hours')?.innerText = timeDisplay
+        document.getElementById('clock_seconds')?.innerText = secondDisplay
+        document.getElementById('clock_ampm')?.innerText = ampm
         document.getElementById('clock')?.setAttribute('dateTime', timeDisplay)
       }
       setInterval(runTime, 1000)
