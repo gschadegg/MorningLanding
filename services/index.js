@@ -7,14 +7,22 @@ const getUnsplashBG = async () => {
   return res.data
 }
 
-const getWeather = async (location, unit = 'f') => {
-  const weatherURL = `http://api.weatherstack.com/current?access_key=${
-    process.env.NEXT_PUBLIC_WEATHER_API_KEY
-  }&query=${
-    location?.city
-      ? `${location?.city},${location?.state_code}`
-      : location?.state_code
-  }&units=${unit}`
+// const getWeather = async (location, unit = 'f') => {
+//   const weatherURL = `http://api.weatherstack.com/current?access_key=${
+//     process.env.NEXT_PUBLIC_WEATHER_API_KEY
+//   }&query=${
+//     location?.city
+//       ? `${location?.city},${location?.state_code}`
+//       : location?.state_code
+//   }&units=${unit}`
+
+//   const res = await axios.get(`${weatherURL}`)
+//   console.log(res)
+//   return res.data
+// }
+
+const getWeather = async (location, unit = 'imperial') => {
+  const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&units=${unit}`
 
   const res = await axios.get(`${weatherURL}`)
   console.log(res)

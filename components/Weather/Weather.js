@@ -14,7 +14,8 @@ const Weather = ({ location }) => {
   useEffect(() => {
     const getWeather = async () => {
       let data = await services.getWeather(location)
-      if (data && data.location) {
+      console.log('data', data)
+      if (data && data.main) {
         let expiryData = await setExpiry('every6Hrs')
         window.localStorage.setItem(
           'ML-weather',
@@ -43,11 +44,11 @@ const Weather = ({ location }) => {
     }
     return () => {}
   }, [location])
-
+  // let iconString = weather?.weather[0].icon.slice(-1)
   const weatherIcon =
-    weather?.current?.is_day === 'yes'
-      ? `${weatherCodes[weather?.current?.weather_code]?.day}`
-      : `${weatherCodes[weather?.current?.weather_code]?.night}`
+    weather?.weather[0].icon.slice(-1) === 'd'
+      ? `${weatherCodes[weather?.weather[0].id]?.day}`
+      : `${weatherCodes[weather?.weather[0].id]?.night}`
 
   return (
     <>
@@ -56,12 +57,10 @@ const Weather = ({ location }) => {
           <Icon icon={weatherIcon} width={64} className={styles.weather_icon} />
           <div>
             <span className={styles.weather_temp}>
-              {weather?.current?.temperature}
+              {Math.floor(weather?.main?.temp)}
               <span className={styles.weather_degree}>&#176;</span>
             </span>
-            <span className={styles.weather_unit}>
-              {weather?.request?.unit.toUpperCase()}
-            </span>
+            <span className={styles.weather_unit}>F</span>
           </div>
         </section>
       )}
