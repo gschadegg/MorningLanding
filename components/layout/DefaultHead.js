@@ -2,6 +2,7 @@ import Head from 'next/head'
 import coverImg from './../../public/images/morningLanding-cover.webp'
 
 const DefaultHead = ({ title }) => {
+  console.log('coverimg', coverImg)
   return (
     <Head>
       <title>{title}</title>
@@ -16,9 +17,9 @@ const DefaultHead = ({ title }) => {
       />
       <meta property="og:title" content={title} />
       <meta property="og:type" content="webApp" />
-      <meta property="og:image" content={coverImg} />
+      <meta property="og:image" content={coverImg.src} />
       <meta property="og:url" content="https://morning-landing.vercel.app/" />
-      <meta name="twitter:card" content={coverImg} />
+      <meta name="twitter:card" content={coverImg.src} />
       <meta property="og:description" content="NEEEWW desc here!" />
       <meta property="og:site_name" content={title} />
       <meta
