@@ -11,6 +11,7 @@ import { Icon } from '@iconify/react'
 import Drawer from '../components/Drawer/Drawer'
 import Settings from './../components/Settings/Settings'
 import OutlinedButton from '../components/UI/Buttons/OutlinedButton'
+import QuickLinks from '../components/Widgets/QuickLinks/QuickLinks'
 
 export default function Home() {
   const [showDrawer, setShowDrawer] = useState(false)
@@ -58,6 +59,10 @@ export default function Home() {
               View the Day's Actions
             </OutlinedButton>
           )}
+          <article>
+            {/* right col */}
+            <QuickLinks />
+          </article>
         </section>
         <Drawer
           toggleDrawer={toggleActionDrawer}

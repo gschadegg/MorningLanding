@@ -31,7 +31,7 @@ export default function PinnedTaskList() {
     <DrawerWidget title={`Pinned Reminders`} classes={[`column`]}>
       <ul id="pinnedTask_list" className={styles.pinnedTask_list}>
         <li className={styles.newPinnedTask}>
-          <button onClick={onBlurHandler} title="Add New Task">
+          <button onClick={onBlurHandler} title="Add New Reminder">
             <Icon icon="fluent:add-16-filled" width={20} />
           </button>
           <input
@@ -39,7 +39,7 @@ export default function PinnedTaskList() {
             onKeyDown={onKeyDownHandler}
             value={newTask}
             onBlur={onBlurHandler}
-            placeholder="Click to add a pinned task"
+            placeholder="Click to add a pinned reminder"
           />
         </li>
         {pinnedTaskCTX.taskList}

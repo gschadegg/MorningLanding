@@ -34,7 +34,7 @@ const Weather = ({ location }) => {
     const weatherStored = window.localStorage.getItem('ML-weather')
     const parsedWeather = JSON.parse(weatherStored)
     if (
-      (location && !weatherStored) ||
+      (location && location !== 'undefined' && !weatherStored) ||
       new Date().getTime() > parsedWeather?.expiryData
     ) {
       getWeather()
@@ -54,7 +54,7 @@ const Weather = ({ location }) => {
     <>
       {weather && (
         <section className={styles.weather}>
-          <Icon icon={weatherIcon} width={64} className={styles.weather_icon} />
+          <Icon icon={weatherIcon} width={60} className={styles.weather_icon} />
           <div>
             <span className={styles.weather_temp}>
               {Math.floor(weather?.main?.temp)}

@@ -48,12 +48,12 @@ export default function PinnedTask({ task, id, completed = false }) {
         onBlur={onBlurHandler}
         onChange={updateTaskHandler}
         value={taskValue}
-        placeholder="Click to add a pinned task"
+        placeholder="Click to add a pinned reminder"
       />
       <button
         onClick={deleteTaskHandler}
         className={styles.pinnedTask_delete}
-        title="Delete Task"
+        title="Delete Reminder"
       >
         <Icon icon="fluent:delete-24-regular" width={20} />
       </button>

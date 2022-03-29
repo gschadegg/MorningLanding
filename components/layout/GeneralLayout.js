@@ -89,7 +89,7 @@ const GeneralLayout = ({ children }) => {
           backgroundColor: 'darkslategray',
         }}
       >
-        {children}
+        <div className={'container mx-auto'}>{children}</div>
       </div>
     </>
   )

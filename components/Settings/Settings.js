@@ -19,7 +19,14 @@ export default function Settings({ toggleSettingsHandler, classes }) {
         <button onClick={toggleSettingsHandler}>close</button>
       </section>
       <Formik
-        initialValues={{ location: '', activeWidgets: [] }}
+        initialValues={{
+          location: '',
+          activeWidgets: [
+            'Daily Big Three',
+            'Pinned Reminders',
+            'Inspirational Quotes',
+          ],
+        }}
         validate={(values) => {
           const errors = {}
           if (
@@ -35,10 +42,13 @@ export default function Settings({ toggleSettingsHandler, classes }) {
             alert(JSON.stringify(values, null, 2))
             setSubmitting(false)
           }, 400)
+          // set settings context to hold current location & widgets
+          // context saves data locally
         }}
       >
         {({ isSubmitting }) => (
           <Form>
+            <label htmlFor="location">Your Location</label>
             <Field type="text" name="location" />
             <ErrorMessage name="location" component="div" />
             <div id="checkbox-group">Pick Your Widgets</div>

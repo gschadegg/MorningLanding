@@ -3,7 +3,7 @@
 // }
 
 .pinnedTask {
-  @apply bg-white/20 backdrop-blur-sm rounded-lg  min-h-[48px] px-6 py-3 flex mb-1 flex-1 transition-all;
+  @apply backdrop-blur-sm bg-white/20 rounded-lg  min-h-[48px] px-6 py-3 flex mb-1 flex-1 transition-all;
 
   input {
     @apply bg-transparent flex-1 mx-3 rounded-lg px-2;
@@ -37,7 +37,7 @@
 }
 
 .newPinnedTask {
-  @apply bg-white/20 backdrop-blur-sm rounded-lg  min-h-[48px] px-6 py-3 flex mb-1 flex-1 transition-all items-center;
+  @apply backdrop-blur-sm bg-white/10 shadow-[0_0px_6px_-1px_rgb(0_0_0_/_0.5)_inset,_0_0px_4px_-2px_rgb(0_0_0_/_0.5)_inset] rounded-lg min-h-[48px] px-6 py-3 flex mb-4 flex-1 transition-all items-center;
   button {
     @apply rounded-lg p-[4px] text-darkBlack/50;
     &:hover,
