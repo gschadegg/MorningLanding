@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { PinnedTasksContextProvider } from '../../store/pinnedTasks-context'
+import SettingsContext from '../../store/settings-context'
 import BigThree from './BigThree/BigThree'
 import PinnedTaskList from './PinnedTasks/PinnedTaskList'
 import OutlinedButton from '../UI/Buttons/OutlinedButton'
@@ -7,7 +8,7 @@ import styles from './Drawer.module.scss'
 import { Icon } from '@iconify/react'
 
 export default function Drawer({ classes, toggleDrawer }) {
-  // figure out which widgets are set to display
+  const { activeWidgets } = useContext(SettingsContext)
 
   return (
     <article className={`${styles.action_drawer} ${classes.join(' ')}`}>
@@ -23,10 +24,14 @@ export default function Drawer({ classes, toggleDrawer }) {
         />
         Close Actions
       </OutlinedButton>
-      <BigThree />
-      <PinnedTasksContextProvider>
-        <PinnedTaskList />
-      </PinnedTasksContextProvider>
+      {activeWidgets['Daily Big Three'] && <BigThree />}
+      {activeWidgets['Pinned Reminders'] ? (
+        <PinnedTasksContextProvider>
+          <PinnedTaskList />
+        </PinnedTasksContextProvider>
+      ) : (
+        'notepad display'
+      )}
     </article>
   )
 }

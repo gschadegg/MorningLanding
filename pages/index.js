@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
+import { useState, useRef, useEffect, useContext } from 'react'
+// import Link from 'next/link'
+// import Image from 'next/image'
+import SettingsContext from '../store/settings-context'
 import styles from '../styles/Home.module.scss'
 import DefaultHead from '../components/layout/DefaultHead'
 import GeneralLayout from '../components/layout/GeneralLayout'
@@ -16,6 +17,7 @@ import QuickLinks from '../components/Widgets/QuickLinks/QuickLinks'
 export default function Home() {
   const [showDrawer, setShowDrawer] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
+  const settingsCXT = useContext(SettingsContext)
 
   const toggleActionDrawer = () => {
     setShowDrawer((prevState) => !prevState)
@@ -61,7 +63,7 @@ export default function Home() {
           )}
           <article>
             {/* right col */}
-            <QuickLinks />
+            {settingsCXT['Quick Links'] && <QuickLinks />}
           </article>
         </section>
         <Drawer

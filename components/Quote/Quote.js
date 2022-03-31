@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from 'react'
 import NotificationContext from '../../store/notification-context'
+import SettingsContext from '../../store/settings-context'
 import services from './../../services/index'
 import { setExpiry } from './../../utils/index'
 import styles from './Quote.module.scss'
@@ -7,12 +8,13 @@ import styles from './Quote.module.scss'
 const Quote = ({}) => {
   const [quote, setQuote] = useState()
   const notificationCTX = useContext(NotificationContext)
+  const { activeWidgets } = useContext(SettingsContext)
 
   useEffect(() => {
     const getQuote = async () => {
       let data = await services.getQuote()
       if (data) {
-        let expiryData = await setExpiry()
+        let expiryData = setExpiry()
         window.localStorage.setItem(
           'ML-quote',
           JSON.stringify({ data, expiryData })
@@ -34,18 +36,21 @@ const Quote = ({}) => {
     } else {
       getQuote()
     }
-
     return () => {}
   }, [])
 
   return (
     <section className={styles.quote}>
-      <blockquote className={styles.quote_block}>
-        "{quote?.contents.quotes[0].quote}"
-      </blockquote>
-      <cite className={styles.quote_author}>
-        {quote?.contents.quotes[0].author}
-      </cite>
+      {activeWidgets['Inspirational Quotes'] && (
+        <>
+          <blockquote className={styles.quote_block}>
+            "{quote?.contents.quotes[0].quote}"
+          </blockquote>
+          <cite className={styles.quote_author}>
+            {quote?.contents.quotes[0].author}
+          </cite>
+        </>
+      )}
     </section>
   )
 }

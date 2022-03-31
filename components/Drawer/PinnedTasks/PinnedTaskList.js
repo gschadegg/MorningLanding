@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useCallback } from 'react'
+import React, { useState, useContext } from 'react'
 import PinnedTasksContext from '../../../store/pinnedTasks-context'
 import styles from './PinnedTasks.module.scss'
 import DrawerWidget from '../DrawerWidget/DrawerWidget'
@@ -28,9 +28,12 @@ export default function PinnedTaskList() {
   }
 
   return (
-    <DrawerWidget title={`Pinned Reminders`} classes={[`column`]}>
-      <ul id="pinnedTask_list" className={styles.pinnedTask_list}>
-        <li className={styles.newPinnedTask}>
+    <DrawerWidget
+      title={`Pinned Reminders`}
+      id={styles.pinnedTasks}
+      classes={[`column`]}
+      subEl={
+        <div className={styles.newPinnedTask}>
           <button onClick={onBlurHandler} title="Add New Reminder">
             <Icon icon="fluent:add-16-filled" width={20} />
           </button>
@@ -41,7 +44,10 @@ export default function PinnedTaskList() {
             onBlur={onBlurHandler}
             placeholder="Click to add a pinned reminder"
           />
-        </li>
+        </div>
+      }
+    >
+      <ul id="pinnedTask_list" className={styles.pinnedTask_list}>
         {pinnedTaskCTX.taskList}
       </ul>
     </DrawerWidget>

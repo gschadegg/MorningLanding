@@ -2,7 +2,6 @@ import Head from 'next/head'
 import coverImg from './../../public/images/morningLanding-cover.webp'
 
 const DefaultHead = ({ title }) => {
-  console.log('coverimg', coverImg)
   return (
     <Head>
       <title>{title}</title>

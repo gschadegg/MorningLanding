@@ -15,7 +15,6 @@ const LocationBlock = () => {
 
   const fetchlocation = async (lat, lng) => {
     let { features } = await services.getLocation(lat, lng)
-    console.log(features)
     if (features) {
       window.localStorage.setItem(
         'ML-location',
