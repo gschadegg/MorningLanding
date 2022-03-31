@@ -4,6 +4,7 @@ import SettingsContext from '../../store/settings-context'
 import NotificationContext from '../../store/notification-context'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import styles from './Settings.module.scss'
+import Checkbox from './Checkbox/Checkbox'
 
 export default function Settings({ toggleSettingsHandler, classes }) {
   const settingsCXT = useContext(SettingsContext)
@@ -89,108 +90,14 @@ export default function Settings({ toggleSettingsHandler, classes }) {
                 role="group"
                 aria-labelledby="checkbox-group"
               >
-                <label className={styles.form__checkbox}>
-                  <Field
-                    disabled
-                    type="checkbox"
-                    name="activeWidgets"
-                    value="Quick Links"
-                  />
-                  <span className={styles.form__checkbox_mark}>
-                    <Icon
-                      icon="carbon:close-outline"
-                      width={24}
-                      rotate={1}
-                      inline={true}
-                    />
-                  </span>
-                  <span>Quick Links</span>
-                </label>
-                <label className={styles.form__checkbox}>
-                  <Field
-                    type="checkbox"
-                    name="activeWidgets"
-                    value="Daily Big Three"
-                  />
-                  <span className={styles.form__checkbox_mark}>
-                    <Icon
-                      icon="carbon:close-outline"
-                      width={24}
-                      rotate={1}
-                      inline={true}
-                    />
-                  </span>
-                  <span>Daily Big Three</span>
-                </label>
-                <label className={styles.form__checkbox}>
-                  <Field
-                    type="checkbox"
-                    name="activeWidgets"
-                    value="Pinned Reminders"
-                  />
-                  <span className={styles.form__checkbox_mark}>
-                    <Icon
-                      icon="carbon:close-outline"
-                      width={24}
-                      rotate={1}
-                      inline={true}
-                    />
-                  </span>
-                  <span>Pinned Reminders</span>
-                </label>
-                <label className={styles.form__checkbox}>
-                  <Field
-                    type="checkbox"
-                    name="activeWidgets"
-                    value="Inspirational Quotes"
-                  />
-                  <span className={styles.form__checkbox_mark}>
-                    <Icon
-                      icon="carbon:close-outline"
-                      width={24}
-                      rotate={1}
-                      inline={true}
-                    />
-                  </span>
-                  <span>Inspirational Quotes</span>
-                </label>
-                <label className={styles.form__checkbox}>
-                  <Field
-                    disabled
-                    type="checkbox"
-                    name="activeWidgets"
-                    value="Spotify Player"
-                  />
-                  <span className={styles.form__checkbox_mark}>
-                    <Icon
-                      icon="carbon:close-outline"
-                      width={24}
-                      rotate={1}
-                      inline={true}
-                    />
-                  </span>
-                  <span>Spotify Player</span>
-                </label>
-                <label className={styles.form__checkbox}>
-                  <Field
-                    disabled
-                    type="checkbox"
-                    name="activeWidgets"
-                    value="Gmail Calendar"
-                  />
-                  <span className={styles.form__checkbox_mark}>
-                    <Icon
-                      icon="carbon:close-outline"
-                      width={24}
-                      rotate={1}
-                      inline={true}
-                    />
-                  </span>
-                  <span>Gmail Calendar</span>
-                </label>
+                <Checkbox valueName="Quick Links" disabled={true} />
+                <Checkbox valueName="Daily Big Three" />
+                <Checkbox valueName="Pinned Reminders" />
+                <Checkbox valueName="Inspirational Quotes" />
+                <Checkbox valueName="Spotify Player" disabled={true} />
+                <Checkbox valueName="Gmail Calendar" disabled={true} />
               </div>
             </div>
-
             <button type="submit" disabled={isSubmitting}>
               Save Settings
             </button>
