@@ -63,6 +63,11 @@ export const SettingsContextProvider = (props) => {
         'Pinned Reminders',
         'Inspirational Quotes',
       ])
+      updatingActiveWidgets([
+        'Daily Big Three',
+        'Pinned Reminders',
+        'Inspirational Quotes',
+      ])
     }
   }, [])
 

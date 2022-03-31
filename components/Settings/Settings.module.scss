@@ -7,9 +7,9 @@
     transition: all 0.4s ease-out;
   }
   form {
-    @apply font-body flex flex-col flex-auto;
+    @apply font-body flex flex-col flex-auto overflow-y-auto;
     button[type='submit'] {
-      @apply mx-16 font-display flex justify-center items-center text-xl font-bold capitalize  border-white border-2 rounded-full bg-white/10 p-1 transition-all;
+      @apply mx-8 md:mx-16 font-display flex justify-center items-center text-xl font-bold capitalize  border-white border-2 rounded-full bg-white/10 p-1 transition-all;
       font-variant: small-caps;
 
       &:hover,
@@ -24,7 +24,7 @@
       @apply border-white/60 rounded-full border-2 bg-white/10 text-white px-4 py-2;
     }
     .form__group {
-      @apply px-16 py-8;
+      @apply px-8 py-8 md:px-16;
       &:not(:last-of-type) {
         @apply border-b-[1px] border-white/30;
       }
@@ -44,7 +44,7 @@
 }
 
 .settings__header {
-  @apply flex items-center justify-between border-b-[1px] border-white/30 px-16 pb-16;
+  @apply flex items-center justify-between border-b-[1px] border-white/30 px-8 md:px-16 pb-16;
   h2 {
     @apply flex items-center text-3xl font-bold capitalize;
     font-variant: small-caps;
