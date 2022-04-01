@@ -4,7 +4,7 @@ import SettingsContext from '../../store/settings-context'
 import NotificationContext from '../../store/notification-context'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import styles from './Settings.module.scss'
-import Checkbox from './Checkbox/Checkbox'
+import Checkbox from '../UI/Checkbox/Checkbox'
 
 export default function Settings({ toggleSettingsHandler, classes }) {
   const settingsCXT = useContext(SettingsContext)

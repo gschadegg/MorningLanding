@@ -74,7 +74,7 @@ export default function BigThreeTask({ taskNum }) {
         />
       </span>
       <textarea
-        title="Edit Action Name"
+        title="Edit Action"
         value={task}
         placeholder="Add an action to focus on for today"
         onChange={updateTaskHandler}

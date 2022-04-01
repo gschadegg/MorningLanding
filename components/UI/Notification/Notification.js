@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { Icon } from '@iconify/react'
-import NotificationContext from '../../store/notification-context'
+import NotificationContext from '../../../store/notification-context'
 import styles from './Notification.module.scss'
 
 const Notification = () => {

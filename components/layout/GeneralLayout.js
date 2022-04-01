@@ -4,7 +4,7 @@ import styles from './GeneraLayout.module.scss'
 import { useUnsplashBG, useMounted } from '../../hooks'
 import services from './../../services/index'
 import NotificationContext from '../../store/notification-context'
-import Notification from '../Notification/Notification'
+import Notification from './../UI/Notification/Notification'
 import { setExpiry } from './../../utils/index'
 
 const GeneralLayout = ({ children }) => {
@@ -12,36 +12,7 @@ const GeneralLayout = ({ children }) => {
   const notificationCTX = useContext(NotificationContext)
   const [getImage, setGetImage] = useState(true)
   const [imageData, setImageData] = useState()
-  // const { fetchedImage, isError } = useUnsplashBG(getImage)
 
-  // if (mounted) {
-  //   const backgroundStored = window.localStorage.getItem('ML-unsplashImage')
-  //   const parsedBackgroundStored = JSON.parse(backgroundStored)
-  //   if (
-  //     backgroundStored &&
-  //     !imageData &&
-  //     (parsedBackgroundStored.userSet ||
-  //       new Date().getTime() < parsedBackgroundStored.expiryData)
-  //   ) {
-  //     setGetImage(false)
-  //     setImageData(parsedBackgroundStored.fetchedImage)
-  //   }
-  // }
-
-  // if (fetchedImage && fetchedImage !== undefined && !imageData) {
-  //   let expiryData = setExpiry()
-  //   window.localStorage.setItem(
-  //     'ML-unsplashImage',
-  //     JSON.stringify({ fetchedImage, expiryData, userSet: false })
-  //   )
-  //   setImageData(fetchedImage)
-  // }
-  // if (isError) {
-  //   notificationCTX.setUpNotification(
-  //     'Had trouble searching through our image backgrounds!',
-  //     'error'
-  //   )
-  // }
   useEffect(() => {
     const getBackground = async () => {
       let data = await services.getUnsplashBG()

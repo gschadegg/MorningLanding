@@ -34,12 +34,3 @@ export const NotificationContextProvider = (props) => {
 }
 
 export default NotificationContext
-
-// Listening
-// could wrap everything
-// useContext hook
-//where you want to use it
-// import from react { useContext}
-
-// const ctxValue = useContext(NotificationContext)
-//can then use ctx values

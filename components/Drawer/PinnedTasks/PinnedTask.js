@@ -43,7 +43,7 @@ export default function PinnedTask({ task, id, completed = false }) {
         classes={[status ? 'completed' : '']}
       />
       <input
-        title="Edit Task Name"
+        title="Edit Task"
         id={id}
         onBlur={onBlurHandler}
         onChange={updateTaskHandler}
