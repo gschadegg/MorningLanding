@@ -6,6 +6,7 @@ import PinnedTaskList from './PinnedTasks/PinnedTaskList'
 import OutlinedButton from '../UI/Buttons/OutlinedButton'
 import styles from './Drawer.module.scss'
 import { Icon } from '@iconify/react'
+import Notepad from './Notepad.js/Notepad'
 
 export default function Drawer({ classes, toggleDrawer }) {
   const { activeWidgets } = useContext(SettingsContext)
@@ -30,7 +31,7 @@ export default function Drawer({ classes, toggleDrawer }) {
           <PinnedTaskList />
         </PinnedTasksContextProvider>
       ) : (
-        'notepad display'
+        <Notepad />
       )}
     </article>
   )

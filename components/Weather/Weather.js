@@ -13,17 +13,23 @@ const Weather = ({ location }) => {
 
   useEffect(() => {
     const getWeather = async () => {
-      let data = await services.getWeather(location)
-      console.log('data', data)
-      if (data && data.main) {
-        let expiryData = await setExpiry('every6Hrs')
-        window.localStorage.setItem(
-          'ML-weather',
-          JSON.stringify({ data, expiryData })
-        )
-        setWeather(data)
-      } else {
-        window.localStorage.removeItem('ML-weather')
+      try {
+        let data = await services.getWeather(location)
+        if (data && data.main) {
+          let expiryData = setExpiry('every6Hrs')
+          window.localStorage.setItem(
+            'ML-weather',
+            JSON.stringify({ data, expiryData })
+          )
+          setWeather(data)
+        } else {
+          window.localStorage.removeItem('ML-weather')
+          notificationCTX.setUpNotification(
+            "Weather couldn't be set for your location right now!",
+            'error'
+          )
+        }
+      } catch (error) {
         notificationCTX.setUpNotification(
           "Weather couldn't be set for your location right now!",
           'error'
@@ -44,7 +50,7 @@ const Weather = ({ location }) => {
     }
     return () => {}
   }, [location])
-  // let iconString = weather?.weather[0].icon.slice(-1)
+
   const weatherIcon =
     weather?.weather[0].icon.slice(-1) === 'd'
       ? `${weatherCodes[weather?.weather[0].id]?.day}`

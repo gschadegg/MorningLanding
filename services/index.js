@@ -1,14 +1,6 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import axios from 'axios'
 import NotificationContext from './../store/notification-context'
-
-import React from 'react'
-
-export function errorMessage({ message, status }) {
-  const notificationCTX = useContext(NotificationContext)
-  notificationCTX.setUpNotification(message, status)
-  return null
-}
 
 const getUnsplashBG = async () => {
   const unsplashURL = `https://api.unsplash.com/photos/random?orientation=landscape&query=nature&auto=compress,enhance,format&client_id=${process.env.NEXT_PUBLIC_UNSPLASH_ID}`
@@ -18,13 +10,9 @@ const getUnsplashBG = async () => {
 }
 
 const getWeather = async (location, unit = 'imperial') => {
-  try {
-    const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&units=${unit}`
-    const res = await axios.get(`${weatherURL}`)
-    return res.data
-  } catch (error) {
-    errorMessage(`We couldn't fetch the data you were looking for!`, 'error')
-  }
+  const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&units=${unit}`
+  const res = await axios.get(`${weatherURL}`)
+  return res.data
 }
 
 const getLocation = async (lat, lng) => {

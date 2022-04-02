@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import styles from './BigThree.module.scss'
-import { Icon } from '@iconify/react'
 import { setExpiry } from './../../../utils/index'
 import CompleteButton from '../../UI/Buttons/CompleteButton/CompleteButton'
 
@@ -66,7 +65,7 @@ export default function BigThreeTask({ taskNum }) {
   return (
     <div className={`${styles.bigThreeTask} ${status ? styles.completed : ''}`}>
       <span>
-        <em>0{taskNum}</em>{' '}
+        <em>0{taskNum}</em>
         <CompleteButton
           title={status ? 'Un-Mark Completed Action' : 'Mark Action Complete'}
           onClick={toggleTaskStatus}
