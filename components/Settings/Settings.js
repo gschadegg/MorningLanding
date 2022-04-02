@@ -75,11 +75,19 @@ export default function Settings({ toggleSettingsHandler, classes }) {
             <div
               className={`${styles.form__group} ${styles.form__group_inline}`}
             >
-              <label className={styles.form__label} htmlFor="location">
-                Your Location
-              </label>
-              <Field type="text" name="location" placeholder="ex: Bend, OR" />
-              <ErrorMessage name="location" component="div" />
+              <div className={`${styles.form__group_el}`}>
+                <label className={styles.form__label} htmlFor="location">
+                  Your Location
+                </label>
+
+                <Field type="text" name="location" placeholder="ex: Bend, OR" />
+              </div>
+
+              <ErrorMessage
+                className={styles.form_errorMessage}
+                name="location"
+                component="div"
+              />
             </div>
             <div className={`${styles.form__group} ${styles.form__group_col}`}>
               <div className={styles.form__label} id="checkbox-group">
