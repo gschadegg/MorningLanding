@@ -23,7 +23,7 @@
     @apply z-[100] relative;
   }
   &[class*='btn-drawerToggle'] {
-    @apply mt-[80px] sm:mt-[12px] self-center md:self-end;
+    @apply mt-[80px] mb-[40px] sm:mt-[12px] sm:mb-0 self-center md:self-end;
 
     &[class*='active'] {
       @apply mb-[16px]  md:self-end;
