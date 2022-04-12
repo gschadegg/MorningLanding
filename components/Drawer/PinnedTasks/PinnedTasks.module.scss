@@ -5,7 +5,7 @@
   @apply backdrop-blur-sm bg-white/20 rounded-lg  min-h-[48px] px-6 py-3 flex mb-1 flex-1 transition-all;
 
   input {
-    @apply bg-transparent flex-1 mx-3 rounded-lg px-2;
+    @apply bg-transparent flex-1 mx-3 rounded-lg px-2 min-w-[156px];
     &:focus {
       @apply bg-white/80 outline-0;
       & + .pinnedTask_delete {
