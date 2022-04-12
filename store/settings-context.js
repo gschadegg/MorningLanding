@@ -5,16 +5,16 @@ import services from '../services'
 
 // default context
 const SettingsContext = React.createContext({
-  userLocation: '',
+  // userLocation: '',
   mainLocationData: {},
   widgetsSettings: [],
   activeWidgets: {},
   updateWidgetSettings: (newSettings) => {},
-  updateUserLocation: (newLocation, country) => {},
+  // updateUserLocation: (newLocation, country) => {},
 })
 
 export const SettingsContextProvider = (props) => {
-  const [userLocation, setUserLocation] = useState()
+  // const [userLocation, setUserLocation] = useState()
   const [mainLocationData, setMainLocationData] = useState()
   const [widgetsSettings, setWidgetsSettings] = useState([])
   const [activeWidgets, setActiveWidgets] = useState({})
@@ -23,13 +23,13 @@ export const SettingsContextProvider = (props) => {
 
   const fetchlocation = async (lat, lng, cityState) => {
     let dataResults
-    if (cityState) {
-      let { results } = await services.getLocationByCity(cityState)
-      dataResults = results
-    } else {
-      let { results } = await services.getLocation(lat, lng)
-      dataResults = results
-    }
+    // if (cityState) {
+    //   let { results } = await services.getLocationByCity(cityState)
+    //   dataResults = results
+    // } else {
+    let { results } = await services.getLocation(lat, lng)
+    dataResults = results
+    // }
 
     if (dataResults) {
       let expiryData = setExpiry()
@@ -72,14 +72,11 @@ export const SettingsContextProvider = (props) => {
           const { latitude, longitude } = position.coords
           const expiryData = setExpiry()
 
-          window.localStorage.setItem(
-            'ML-locationCord',
-            JSON.stringify({
-              latitude: latitude,
-              longitude: longitude,
-              expiryData,
-            })
-          )
+          setLocalData('ML-locationCord', {
+            latitude: latitude,
+            longitude: longitude,
+            expiryData,
+          })
           fetchlocation(latitude, longitude, null)
         },
         null,
@@ -98,21 +95,21 @@ export const SettingsContextProvider = (props) => {
     }
   }
 
-  const updateUserLocation = (newLocation) => {
-    try {
-      setUserLocation(newLocation)
-      if (newLocation === '') {
-        getCords()
-      } else {
-        fetchlocation(null, null, newLocation)
-      }
-    } catch (error) {
-      notificationCTX.setUpNotification(
-        'There was an issue saving your new settings',
-        'error'
-      )
-    }
-  }
+  // const updateUserLocation = (newLocation) => {
+  //   try {
+  //     setUserLocation(newLocation)
+  //     if (newLocation === '') {
+  //       getCords()
+  //     } else {
+  //       fetchlocation(null, null, newLocation)
+  //     }
+  //   } catch (error) {
+  //     notificationCTX.setUpNotification(
+  //       'There was an issue saving your new settings',
+  //       'error'
+  //     )
+  //   }
+  // }
 
   const updatingActiveWidgets = (newArr) => {
     const widgets = newArr.reduce((all, widget) => {
@@ -140,7 +137,7 @@ export const SettingsContextProvider = (props) => {
 
     if (localSettings) {
       setWidgetsSettings([...localSettings.activeWidgets])
-      setUserLocation(localSettings.location)
+      // setUserLocation(localSettings.location)
 
       updatingActiveWidgets(localSettings.activeWidgets)
     } else {
@@ -162,9 +159,11 @@ export const SettingsContextProvider = (props) => {
 
     if (locationStored && !pastExpiry(locationStored?.expiryData)) {
       setMainLocationData(locationStored.data)
-    } else if (userLocation) {
-      fetchlocation(null, null, userLocation)
-    } else {
+    }
+    // else if (userLocation) {
+    //   fetchlocation(null, null, userLocation)
+    // }
+    else {
       let locationCordStored = getLocalData('ML-locationCord')
 
       if (locationCordStored && !pastExpiry(locationCordStored?.expiryData)) {
@@ -182,11 +181,11 @@ export const SettingsContextProvider = (props) => {
   return (
     <SettingsContext.Provider
       value={{
-        userLocation: userLocation,
+        // userLocation: userLocation,
         mainLocationData: mainLocationData,
         widgetsSettings: widgetsSettings,
         activeWidgets: activeWidgets,
-        updateUserLocation: updateUserLocation,
+        // updateUserLocation: updateUserLocation,
         updateWidgetSettings: updateWidgetSettings,
       }}
     >

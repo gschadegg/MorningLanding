@@ -41,7 +41,6 @@ const Weather = ({ location }) => {
     }
 
     let weatherStored = getLocalData('ML-weather')
-
     if (weatherStored && !pastExpiry(weatherStored.expiryData)) {
       setWeather(weatherStored.data)
     } else {
@@ -50,7 +49,7 @@ const Weather = ({ location }) => {
       }
     }
     return () => {}
-  }, [])
+  }, [location])
 
   const weatherIcon =
     weather?.weather[0].icon.slice(-1) === 'd'

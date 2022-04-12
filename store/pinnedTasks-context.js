@@ -42,7 +42,6 @@ export const PinnedTasksContextProvider = (props) => {
     if (localTaskList) {
       let deleteIdx = localTaskList?.findIndex((task) => task.id === id)
       localTaskList.splice(deleteIdx, 1)
-      console.log(localTaskList)
       setLocalData('ML-pinnedTasks', localTaskList)
     }
   }

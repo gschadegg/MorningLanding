@@ -8,7 +8,6 @@ import SettingsContext from '../../store/settings-context'
 
 const LocationBlock = () => {
   const settingsCXT = useContext(SettingsContext)
-
   return (
     <>
       <section className={styles.locationBlock_topBar}>
