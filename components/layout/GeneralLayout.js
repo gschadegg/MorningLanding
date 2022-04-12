@@ -50,8 +50,6 @@ const GeneralLayout = ({ children }) => {
           backgroundImage: imageData?.urls.regular
             ? `url(${imageData?.urls.regular})`
             : null,
-          backgroundSize: 'cover',
-          backgroundAttachment: 'fixed',
           backgroundColor: 'darkslategray',
         }}
       >

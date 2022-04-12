@@ -1,5 +1,5 @@
 .container {
-  @apply relative z-0 px-4 md:px-8 relative overflow-hidden;
+  @apply relative z-0 px-4 bg-fixed bg-cover min-h-full md:px-8 relative overflow-hidden;
 
   &:after {
     @apply absolute z-[-1] bg-[rgba(8,_14,_46,_0.6)] content-[''] inset-0;
