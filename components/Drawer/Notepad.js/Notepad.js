@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Markdown from 'markdown-to-jsx'
 import DOMPurify from 'dompurify'
+import { setLocalData, getLocalData } from './../../../utils/index'
 import DrawerWidget from '../DrawerWidget/DrawerWidget'
 import styles from './Notepad.module.scss'
 
@@ -9,19 +10,18 @@ export default function Notepad() {
   const [markdown, setMarkdown] = useState('')
 
   useEffect(() => {
-    const localNotes = localStorage.getItem('ML-notePad')
+    const localNotes = getLocalData('ML-notePad')
     let cleanNotes = DOMPurify.sanitize(localNotes)
-    cleanNotes = cleanNotes ? JSON.parse(cleanNotes) : null
+
     if (cleanNotes) {
       setMarkdown(cleanNotes)
     }
   }, [])
 
-  useEffect(() => {
-    if (!inputVisible) {
-      localStorage.setItem('ML-notePad', JSON.stringify(markdown))
-    }
-  }, [inputVisible])
+  const textareaBlurHandler = () => {
+    setInputVisible(false)
+    setLocalData('ML-notePad', markdown)
+  }
 
   return (
     <DrawerWidget title={`Notepad`} id={styles.notepad} classes={[`column`]}>
@@ -30,7 +30,7 @@ export default function Notepad() {
           autoFocus
           className={styles.markdown__input}
           value={markdown}
-          onBlur={() => setInputVisible(false)}
+          onBlur={textareaBlurHandler}
           onChange={(e) => {
             setMarkdown(DOMPurify.sanitize(e.target.value))
           }}

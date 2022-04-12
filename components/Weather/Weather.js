@@ -1,7 +1,13 @@
 import { useEffect, useState, useContext } from 'react'
 import NotificationContext from '../../store/notification-context'
 import services from './../../services/index'
-import { setExpiry } from '../../utils'
+import {
+  setExpiry,
+  pastExpiry,
+  setLocalData,
+  getLocalData,
+  deleteLocalData,
+} from '../../utils'
 import styles from './Weather.module.scss'
 import weatherCodes from './../../data/weatherCodes.json'
 
@@ -17,13 +23,10 @@ const Weather = ({ location }) => {
         let data = await services.getWeather(location)
         if (data && data.main) {
           let expiryData = setExpiry('every6Hrs')
-          window.localStorage.setItem(
-            'ML-weather',
-            JSON.stringify({ data, expiryData })
-          )
+          setLocalData('ML-weather', { data, expiryData })
           setWeather(data)
         } else {
-          window.localStorage.removeItem('ML-weather')
+          deleteLocalData('ML-weather')
           notificationCTX.setUpNotification(
             "Weather couldn't be set for your location right now!",
             'error'
@@ -37,19 +40,17 @@ const Weather = ({ location }) => {
       }
     }
 
-    const weatherStored = window.localStorage.getItem('ML-weather')
-    const parsedWeather = JSON.parse(weatherStored)
-    if (
-      (location && location !== 'undefined' && !weatherStored) ||
-      new Date().getTime() > parsedWeather?.expiryData
-    ) {
-      getWeather()
-    }
-    if (weatherStored) {
-      setWeather(parsedWeather.data)
+    let weatherStored = getLocalData('ML-weather')
+
+    if (weatherStored && !pastExpiry(weatherStored.expiryData)) {
+      setWeather(weatherStored.data)
+    } else {
+      if (location) {
+        getWeather()
+      }
     }
     return () => {}
-  }, [location])
+  }, [])
 
   const weatherIcon =
     weather?.weather[0].icon.slice(-1) === 'd'

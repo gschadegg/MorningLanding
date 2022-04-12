@@ -2,7 +2,12 @@ import { useEffect, useState, useContext } from 'react'
 import NotificationContext from '../../store/notification-context'
 import SettingsContext from '../../store/settings-context'
 import services from './../../services/index'
-import { setExpiry } from './../../utils/index'
+import {
+  setExpiry,
+  pastExpiry,
+  setLocalData,
+  getLocalData,
+} from './../../utils/index'
 import styles from './Quote.module.scss'
 
 const Quote = ({}) => {
@@ -15,21 +20,17 @@ const Quote = ({}) => {
       let data = await services.getQuote()
       if (data) {
         let expiryData = setExpiry()
-        window.localStorage.setItem(
-          'ML-quote',
-          JSON.stringify({ data, expiryData })
-        )
+        setLocalData('ML-quote', { data, expiryData })
         setQuote(data)
       } else {
         notificationCTX.setUpNotification("Couldn't find a quote!", 'error')
       }
     }
 
-    const quoteStored = window.localStorage.getItem('ML-quote')
+    let quoteStored = getLocalData('ML-quote')
     if (quoteStored) {
-      const parsedQuote = JSON.parse(quoteStored)
-      if (parsedQuote.data && new Date().getTime() < parsedQuote.expiryData) {
-        setQuote(parsedQuote.data)
+      if (quoteStored.data && !pastExpiry(quoteStored.expiryData)) {
+        setQuote(quoteStored.data)
       } else {
         getQuote()
       }

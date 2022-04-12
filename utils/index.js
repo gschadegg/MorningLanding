@@ -18,7 +18,37 @@ export const setExpiry = (ttlLength = 'onceDay') => {
   return expiryData
 }
 
-//   quote - once a day (unless off)
-//   backgroudn - once a day (unless set)
-//   location - once a day (unless set)
-//   weather - once every 6 hours
+export const pastExpiry = (expiry) => {
+  if (new Date().getTime() < expiry) {
+    return false
+  } else {
+    return true
+  }
+}
+
+export const getLocalData = (name) => {
+  try {
+    let localData = window.localStorage.getItem(name)
+    localData = localData ? JSON.parse(localData) : null
+    return localData
+  } catch (error) {
+    return false
+  }
+}
+export const setLocalData = (name, values) => {
+  try {
+    window.localStorage.setItem(name, JSON.stringify(values))
+    return true
+  } catch (error) {
+    return false
+  }
+}
+
+export const deleteLocalData = (name) => {
+  try {
+    window.localStorage.removeItem(name)
+    return true
+  } catch (error) {
+    return false
+  }
+}

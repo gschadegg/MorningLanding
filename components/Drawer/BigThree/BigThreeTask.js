@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import styles from './BigThree.module.scss'
-import { setExpiry } from './../../../utils/index'
+import {
+  setExpiry,
+  pastExpiry,
+  setLocalData,
+  getLocalData,
+} from './../../../utils/index'
 import CompleteButton from '../../UI/Buttons/CompleteButton/CompleteButton'
 
 export default function BigThreeTask({ taskNum }) {
@@ -18,14 +23,13 @@ export default function BigThreeTask({ taskNum }) {
       task: task,
       completed: false,
     }
-    let bigThreeTasks = localStorage.getItem('ML-bigThreeTasks')
+    let bigThreeTasks = getLocalData('ML-bigThreeTasks')
 
-    bigThreeTasks = bigThreeTasks ? JSON.parse(bigThreeTasks) : {}
-    let ttl = await setExpiry()
+    let ttl = setExpiry()
     value.expiry = ttl
 
     bigThreeTasks[taskNum] = value
-    localStorage.setItem('ML-bigThreeTasks', JSON.stringify(bigThreeTasks))
+    setLocalData('ML-bigThreeTasks', bigThreeTasks)
     setStatus(false)
   }
 
@@ -36,15 +40,14 @@ export default function BigThreeTask({ taskNum }) {
   }
 
   useEffect(() => {
-    let bigThreeTasks = localStorage.getItem('ML-bigThreeTasks')
-    bigThreeTasks = bigThreeTasks ? JSON.parse(bigThreeTasks) : null
+    let bigThreeTasks = getLocalData('ML-bigThreeTasks')
     if (bigThreeTasks && bigThreeTasks[taskNum]) {
       if (
         bigThreeTasks[taskNum].completed &&
-        new Date().getTime() > bigThreeTasks[taskNum].expiry
+        pastExpiry(bigThreeTasks[taskNum].expiry)
       ) {
         delete bigThreeTasks[taskNum]
-        localStorage.setItem('ML-bigThreeTasks', JSON.stringify(bigThreeTasks))
+        setLocalData('ML-bigThreeTasks', bigThreeTasks)
       } else {
         setTask(bigThreeTasks[taskNum].task)
         setStatus(bigThreeTasks[taskNum].completed)
@@ -54,11 +57,11 @@ export default function BigThreeTask({ taskNum }) {
 
   //save status locally on change
   useEffect(() => {
-    let bigThreeTasks = localStorage.getItem('ML-bigThreeTasks')
-    bigThreeTasks = bigThreeTasks ? JSON.parse(bigThreeTasks) : null
+    let bigThreeTasks = getLocalData('ML-bigThreeTasks')
     if (bigThreeTasks && bigThreeTasks[taskNum]) {
       bigThreeTasks[taskNum].completed = status
-      localStorage.setItem('ML-bigThreeTasks', JSON.stringify(bigThreeTasks))
+      bigThreeTasks[taskNum].expiry = setExpiry()
+      setLocalData('ML-bigThreeTasks', bigThreeTasks)
     }
   }, [status, taskNum])
 

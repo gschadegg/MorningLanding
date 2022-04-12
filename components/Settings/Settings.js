@@ -1,6 +1,12 @@
 import React, { useContext } from 'react'
 import { Icon } from '@iconify/react'
 import SettingsContext from '../../store/settings-context'
+import {
+  setExpiry,
+  pastExpiry,
+  setLocalData,
+  getLocalData,
+} from './../../utils/index'
 import NotificationContext from '../../store/notification-context'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import styles from './Settings.module.scss'
@@ -37,25 +43,25 @@ export default function Settings({ toggleSettingsHandler, classes }) {
 
       <Formik
         initialValues={{
-          location: settingsCXT.userLocation || '',
+          // location: settingsCXT.userLocation || '',
           activeWidgets: settingsCXT.widgetsSettings,
         }}
         enableReinitialize
-        validate={(values) => {
-          const errors = {}
-          if (
-            values.location &&
-            !/^([^,]+), ([A-Z]{2})$/i.test(values.location)
-          ) {
-            errors.location = 'Invalid location or format!'
-          }
-          return errors
-        }}
+        // validate={(values) => {
+        //   const errors = {}
+        //   if (
+        //     values.location &&
+        //     !/^([^,]+), ([A-Z]{2})$/i.test(values.location)
+        //   ) {
+        //     errors.location = 'Invalid location or format!'
+        //   }
+        //   return errors
+        // }}
         onSubmit={(values, { setSubmitting }) => {
           try {
-            window.localStorage.setItem('ML-settings', JSON.stringify(values))
+            setLocalData('ML-settings', values)
             settingsCXT.updateWidgetSettings(values.activeWidgets)
-            settingsCXT.updateUserLocation(values.location)
+            // settingsCXT.updateUserLocation(values.location)
             setSubmitting(false)
             toggleSettingsHandler()
             notificationCTX.setUpNotification(
@@ -72,7 +78,7 @@ export default function Settings({ toggleSettingsHandler, classes }) {
       >
         {({ isSubmitting }) => (
           <Form>
-            <div
+            {/* <div
               className={`${styles.form__group} ${styles.form__group_inline}`}
             >
               <div className={`${styles.form__group_el}`}>
@@ -88,7 +94,7 @@ export default function Settings({ toggleSettingsHandler, classes }) {
                 name="location"
                 component="div"
               />
-            </div>
+            </div> */}
             <div className={`${styles.form__group} ${styles.form__group_col}`}>
               <div className={styles.form__label} id="checkbox-group">
                 Pick Your Widgets

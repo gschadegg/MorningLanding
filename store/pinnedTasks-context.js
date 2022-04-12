@@ -1,6 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { setExpiry } from '../utils/index'
+import {
+  setExpiry,
+  pastExpiry,
+  setLocalData,
+  getLocalData,
+} from '../utils/index'
 
 import NotificationContext from './notification-context'
 import PinnedTask from '../components/Drawer/PinnedTasks/PinnedTask'
@@ -23,23 +28,22 @@ export const PinnedTasksContextProvider = (props) => {
     let newPinned = <PinnedTask key={newID} task={newTask} id={newID} />
     setTaskList((prevState) => [...prevState, newPinned])
 
-    let localTaskList = localStorage.getItem('ML-pinnedTasks')
-    localTaskList = localTaskList ? JSON.parse(localTaskList) : []
+    let localTaskList = getLocalData('ML-pinnedTasks')
     const taskObj = {
       name: newTask,
       completed: false,
       id: newID,
     }
     localTaskList = [...localTaskList, taskObj]
-    localStorage.setItem('ML-pinnedTasks', JSON.stringify(localTaskList))
+    setLocalData('ML-pinnedTasks', localTaskList)
   }
   const deleteTaskStorage = (id) => {
-    let localTaskList = localStorage.getItem('ML-pinnedTasks')
-    localTaskList = localTaskList ? JSON.parse(localTaskList) : null
+    let localTaskList = getLocalData('ML-pinnedTasks')
     if (localTaskList) {
       let deleteIdx = localTaskList?.findIndex((task) => task.id === id)
       localTaskList.splice(deleteIdx, 1)
-      localStorage.setItem('ML-pinnedTasks', JSON.stringify(localTaskList))
+      console.log(localTaskList)
+      setLocalData('ML-pinnedTasks', localTaskList)
     }
   }
   //removes single task from list
@@ -50,13 +54,6 @@ export const PinnedTasksContextProvider = (props) => {
       newList.splice(idx, 1)
       setTaskList([...newList])
       deleteTaskStorage(el.id)
-      // let localTaskList = localStorage.getItem('ML-pinnedTasks')
-      // localTaskList = localTaskList ? JSON.parse(localTaskList) : null
-      // if (localTaskList) {
-      //   let deleteIdx = localTaskList?.findIndex((task) => task.id === el.id)
-      //   localTaskList.splice(deleteIdx, 1)
-      //   localStorage.setItem('ML-pinnedTasks', JSON.stringify(localTaskList))
-      // }
     } else {
       notificationCTX.setUpNotification(
         `We couldn't find that task to remove it!`,
@@ -66,14 +63,13 @@ export const PinnedTasksContextProvider = (props) => {
   }
 
   const updateCompletedStatus = async (id, status) => {
-    let localTaskList = localStorage.getItem('ML-pinnedTasks')
-    localTaskList = localTaskList ? JSON.parse(localTaskList) : null
+    let localTaskList = getLocalData('ML-pinnedTasks')
     if (localTaskList) {
-      const ttl = status ? await setExpiry() : null
+      const ttl = status ? setExpiry() : null
       let updateIdx = localTaskList?.findIndex((task) => task.id === id)
       localTaskList[updateIdx].completed = status
       localTaskList[updateIdx].expiry = ttl
-      localStorage.setItem('ML-pinnedTasks', JSON.stringify(localTaskList))
+      setLocalData('ML-pinnedTasks', localTaskList)
     } else {
       notificationCTX.setUpNotification(
         `We couldn't find that task to update it!`,
@@ -82,25 +78,11 @@ export const PinnedTasksContextProvider = (props) => {
     }
   }
 
-  //if there is a pinnedTaskList locally, save
-  // useEffect(() => {
-  //   let localTaskList = localStorage.getItem('ML-pinnedTasks')
-  //   localTaskList = localTaskList ? JSON.parse(localTaskList) : null
-  //   if(localTaskList){
-  //     const localList = localTaskList.map(task => {
-  //       <PinnedTask key={task.id} task={task.name} id={task.id} completed={task.completed} />
-  //     })
-  //     // localStorage.setItem('ML-bigThreeTasks', JSON.stringify(localTaskList))
-  //     setTaskList([...localList])
-  //   }
-  // },[taskList])
-
   useEffect(() => {
-    let localTaskList = localStorage.getItem('ML-pinnedTasks')
-    localTaskList = localTaskList ? JSON.parse(localTaskList) : null
+    let localTaskList = getLocalData('ML-pinnedTasks')
     if (localTaskList) {
       const localList = localTaskList.map((task) => {
-        if (task.completed && new Date().getTime() > task.expiry) {
+        if (task.completed && pastExpiry(task.expiry)) {
           deleteTaskStorage(task.id)
           return
         } else {
@@ -114,7 +96,6 @@ export const PinnedTasksContextProvider = (props) => {
           )
         }
       })
-      // localStorage.setItem('ML-bigThreeTasks', JSON.stringify(localTaskList))
       setTaskList([...localList])
     }
   }, [])

@@ -1,3 +1,7 @@
+#notepad {
+  @apply flex-auto;
+}
+
 .markdown__input,
 .markdown__display {
   @apply h-[95%] w-full rounded-lg bg-white/40 font-body text-base p-4 border-0 outline-0 backdrop-blur-sm;
@@ -5,4 +9,17 @@
 
 .markdown_placholder {
   @apply opacity-60;
+}
+
+.markdown__display {
+  @apply overflow-auto;
+  ol,
+  ul,
+  menu,
+  li {
+    @apply list-disc m-auto p-[revert];
+  }
+  blockquote {
+    @apply m-[revert];
+  }
 }
