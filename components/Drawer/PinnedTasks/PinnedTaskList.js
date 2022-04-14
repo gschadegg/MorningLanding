@@ -21,7 +21,7 @@ export default function PinnedTaskList() {
   }
 
   const onKeyDownHandler = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && newTask) {
       pinnedTaskCTX.addTaskFunc(newTask)
       setNewTask('')
     }

@@ -83,6 +83,7 @@ export const PinnedTasksContextProvider = (props) => {
   const removeTaskFunc = (el) => {
     let idx = taskList?.findIndex((task) => task.props.task.id === el.id)
     let newList = taskList
+
     if (idx > -1 && idx < taskList.length) {
       newList.splice(idx, 1)
       setTaskList([...newList])

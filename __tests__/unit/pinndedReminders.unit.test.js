@@ -1,57 +1,82 @@
 import React from 'react'
-import { render, fireEvent, within } from '@testing-library/react'
+import { render, fireEvent, within, cleanup } from '@testing-library/react'
 import { v4 as uuidv4 } from 'uuid'
 import { PinnedTasksContextProvider } from '../../store/pinnedTasks-context'
 import PinnedTaskList from './../../components/Drawer/PinnedTasks/PinnedTaskList'
 import PinnedTask from './../../components/Drawer/PinnedTasks/PinnedTask'
 
-afterEach(() => {
-  jest.clearAllMocks()
-})
+describe('Adding New Reminders', () => {
+  let container
+  beforeEach(() => {
+    container = render(
+      <PinnedTasksContextProvider>
+        <PinnedTaskList />
+      </PinnedTasksContextProvider>
+    )
+  })
 
-it('Add New Reminder', () => {
-  let container = render(
-    <PinnedTasksContextProvider>
-      <PinnedTaskList />
-    </PinnedTasksContextProvider>
-  )
-  const input = container.getByPlaceholderText('Click to add a pinned reminder')
-  fireEvent.change(input, { target: { value: 'testing adding reminder' } })
-  expect(input.value).toBe('testing adding reminder')
+  afterEach(() => {
+    if (container.queryByTitle('Delete Reminder')) {
+      let deleteButton = container.getByTitle('Delete Reminder')
+      fireEvent.click(deleteButton)
+    }
+  })
 
-  const addButton = container.getByTitle('Add New Reminder')
-  fireEvent.click(addButton)
+  it('Add New Reminder with Button', () => {
+    const input = container.getByPlaceholderText(
+      'Click to add a pinned reminder'
+    )
+    fireEvent.change(input, {
+      target: { value: 'Adding reminder with button' },
+    })
+    expect(input.value).toBe('Adding reminder with button')
 
-  const taskList = container.getByRole('list')
-  expect(taskList).toBeDefined()
+    const addButton = container.getByTitle('Add New Reminder')
+    fireEvent.click(addButton)
 
-  expect(within(taskList).queryAllByRole('listitem')).toHaveLength(1)
-  expect(input.value).toBe('')
-})
+    const taskList = container.getByRole('list')
+    expect(taskList).toBeDefined()
 
-it('Remove Empty Reminder on Blur', async () => {
-  let container = render(
-    <PinnedTasksContextProvider>
-      <PinnedTaskList />
-    </PinnedTasksContextProvider>
-  )
+    expect(within(taskList).queryAllByRole('listitem')).toHaveLength(1)
+    expect(input.value).toBe('')
+  })
 
-  const input = container.getAllByPlaceholderText(
-    'Click to add a pinned reminder'
-  )[0]
-  fireEvent.change(input, { target: { value: 'remove on blur' } })
+  it('Add New Reminder with Enter Keydown', () => {
+    const input = container.getByPlaceholderText(
+      'Click to add a pinned reminder'
+    )
+    fireEvent.change(input, {
+      target: { value: 'Adding Reminder with Enter' },
+    })
+    expect(input.value).toBe('Adding Reminder with Enter')
 
-  const addButton = container.getByTitle('Add New Reminder')
-  fireEvent.click(addButton)
-  expect(container).toBeDefined()
+    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' })
 
-  const newListItem = container.getAllByTitle('Edit Reminder')[0]
-  fireEvent.focus(newListItem)
-  fireEvent.change(newListItem, { target: { value: '' } })
+    const taskList = container.getByRole('list')
+    expect(taskList).toBeDefined()
 
-  fireEvent.focusOut(newListItem)
+    expect(container.queryByText('Adding Reminder with Enter')).toBeDefined()
+    expect(input.value).toBe('')
+  })
 
-  expect(container.queryByRole('listItem')).not.toBeInTheDocument()
+  it('Remove Empty Reminder on Blur', () => {
+    const input = container.getAllByPlaceholderText(
+      'Click to add a pinned reminder'
+    )[0]
+    fireEvent.change(input, { target: { value: 'remove on blur' } })
+    const addButton = container.getByTitle('Add New Reminder')
+    fireEvent.click(addButton)
+    expect(container).toBeDefined()
+
+    let newListItem = container.getAllByTitle('Edit Reminder')
+    newListItem = newListItem[newListItem.length - 1]
+    fireEvent.focus(newListItem)
+    fireEvent.change(newListItem, { target: { value: '' } })
+
+    fireEvent.focusOut(newListItem)
+
+    expect(container.queryByRole('listItem')).not.toBeInTheDocument()
+  })
 })
 
 describe('Pinned Reminder Actions', () => {
@@ -66,9 +91,27 @@ describe('Pinned Reminder Actions', () => {
   beforeEach(() => {
     container = render(
       <PinnedTasksContextProvider>
-        <PinnedTask task={singleReminder} />
+        <PinnedTaskList />
       </PinnedTasksContextProvider>
     )
+
+    const input = container.getByPlaceholderText(
+      'Click to add a pinned reminder'
+    )
+
+    fireEvent.change(input, {
+      target: { value: 'this is a pinned reminder' },
+    })
+
+    const addButton = container.getByTitle('Add New Reminder')
+    fireEvent.click(addButton)
+  })
+
+  afterEach(() => {
+    if (container.queryByTitle('Delete Reminder')) {
+      let deleteButton = container.getByTitle('Delete Reminder')
+      fireEvent.click(deleteButton)
+    }
   })
 
   it('Render Reminder', () => {
@@ -79,7 +122,7 @@ describe('Pinned Reminder Actions', () => {
   })
 
   it('Toggle Reminder Mark Completed', () => {
-    const statusButton = container.getAllByTitle('Mark Task Complete')[0]
+    const statusButton = container.getByTitle('Mark Task Complete')
     expect(statusButton).toBeDefined()
 
     fireEvent.click(statusButton)
@@ -106,7 +149,7 @@ describe('Pinned Reminder Actions', () => {
   })
 
   it('Delete Reminder', () => {
-    let deleteButton = container.getAllByTitle('Delete Reminder')[0]
+    let deleteButton = container.getByTitle('Delete Reminder')
 
     fireEvent.click(deleteButton)
 
