@@ -4,9 +4,9 @@ import PinnedTasksContext from '../../../store/pinnedTasks-context'
 import CompleteButton from '../../UI/Buttons/CompleteButton/CompleteButton'
 import styles from './PinnedTasks.module.scss'
 
-export default function PinnedTask({ task, id, completed = false }) {
-  const [taskValue, setTaskValue] = useState(task)
-  const [status, setStatus] = useState(completed)
+export default function PinnedTask({ task }) {
+  const [taskValue, setTaskValue] = useState(task.text)
+  const [status, setStatus] = useState(task.completed)
   const pinnedTaskCTX = useContext(PinnedTasksContext)
 
   const toggleStatus = () => {
@@ -27,12 +27,14 @@ export default function PinnedTask({ task, id, completed = false }) {
     e.preventDefault()
     if (e.target.value === '') {
       pinnedTaskCTX.removeTaskFunc(e.target)
+    } else {
+      pinnedTaskCTX.updateTaskFunc(e.target.id, taskValue)
     }
   }
 
   useEffect(() => {
-    pinnedTaskCTX.updateStatusFunc(id, status)
-  }, [status, id])
+    pinnedTaskCTX.updateStatusFunc(task.id, status)
+  }, [status, task.id])
 
   return (
     <li className={`${styles.pinnedTask} ${status ? styles.completed : ''}`}>
@@ -43,12 +45,12 @@ export default function PinnedTask({ task, id, completed = false }) {
         classes={[status ? 'completed' : '']}
       />
       <input
-        title="Edit Task"
-        id={id}
+        title="Edit Reminder"
+        id={task.id}
         onBlur={onBlurHandler}
         onChange={updateTaskHandler}
         value={taskValue}
-        placeholder="Click to add a pinned reminder"
+        placeholder="Click to update pinned reminder"
       />
       <button
         onClick={deleteTaskHandler}

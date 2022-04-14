@@ -14,7 +14,7 @@
     }
   }
   .pinnedTask_delete {
-    @apply hidden text-darkBlack/50;
+    @apply text-darkBlack/50;
     &:hover,
     &:focus {
       @apply text-darkBlack/80;

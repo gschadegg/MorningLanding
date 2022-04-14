@@ -15,7 +15,8 @@ const PinnedTasksContext = React.createContext({
   taskList: [],
   addTaskFunc: (newTask) => {},
   removeTaskFunc: (e) => {},
-  updateCompletedStatus: (id, status) => {},
+  updateStatusFunc: (id, status) => {},
+  updateTaskFunc: (e) => {},
 })
 
 export const PinnedTasksContextProvider = (props) => {
@@ -25,29 +26,62 @@ export const PinnedTasksContextProvider = (props) => {
   //add single task to List
   const addTaskToList = (newTask) => {
     const newID = uuidv4()
-    let newPinned = <PinnedTask key={newID} task={newTask} id={newID} />
-    setTaskList((prevState) => [...prevState, newPinned])
-
-    let localTaskList = getLocalData('ML-pinnedTasks')
     const taskObj = {
-      name: newTask,
+      text: newTask,
       completed: false,
       id: newID,
     }
+    let newPinned = <PinnedTask key={newID} task={taskObj} />
+
+    setTaskList((prevState) => [...prevState, newPinned])
+
+    let localTaskList = getLocalData('ML-pinnedTasks')
+    localTaskList = localTaskList ? localTaskList : []
     localTaskList = [...localTaskList, taskObj]
     setLocalData('ML-pinnedTasks', localTaskList)
   }
+
+  //updates task text
+  const updateTaskFunc = (id, newText) => {
+    let localTaskList = getLocalData('ML-pinnedTasks')
+    if (localTaskList) {
+      let updateIdx = localTaskList.findIndex((task) => task.id === id)
+      if (updateIdx > -1) {
+        localTaskList[updateIdx].text = newText
+        setLocalData('ML-pinnedTasks', localTaskList)
+      } else {
+        notificationCTX.setUpNotification(
+          `We couldn't find that reminder to update it!`,
+          'error'
+        )
+      }
+    } else {
+      notificationCTX.setUpNotification(
+        `We couldn't find that reminder to update it!`,
+        'error'
+      )
+    }
+  }
+
+  //removes task from local data
   const deleteTaskStorage = (id) => {
     let localTaskList = getLocalData('ML-pinnedTasks')
     if (localTaskList) {
       let deleteIdx = localTaskList?.findIndex((task) => task.id === id)
-      localTaskList.splice(deleteIdx, 1)
-      setLocalData('ML-pinnedTasks', localTaskList)
+      if (deleteIdx > -1) {
+        localTaskList.splice(deleteIdx, 1)
+        setLocalData('ML-pinnedTasks', localTaskList)
+      } else {
+        notificationCTX.setUpNotification(
+          `We had trouble deleteing your reminder!`,
+          'error'
+        )
+      }
     }
   }
   //removes single task from list
-  const removeTaskFromList = (el) => {
-    let idx = taskList?.findIndex((task) => task.props.id === el.id)
+  const removeTaskFunc = (el) => {
+    let idx = taskList?.findIndex((task) => task.props.task.id === el.id)
     let newList = taskList
     if (idx > -1 && idx < taskList.length) {
       newList.splice(idx, 1)
@@ -61,14 +95,24 @@ export const PinnedTasksContextProvider = (props) => {
     }
   }
 
-  const updateCompletedStatus = async (id, status) => {
+  //updates status for task and stores locally
+  const updateStatusFunc = (id, status) => {
     let localTaskList = getLocalData('ML-pinnedTasks')
+    let setStatus = status ? status : false
     if (localTaskList) {
-      const ttl = status ? setExpiry() : null
-      let updateIdx = localTaskList?.findIndex((task) => task.id === id)
-      localTaskList[updateIdx].completed = status
-      localTaskList[updateIdx].expiry = ttl
-      setLocalData('ML-pinnedTasks', localTaskList)
+      let updateIdx = localTaskList.findIndex((task) => task.id === id)
+
+      if (updateIdx > -1) {
+        const ttl = setStatus ? setExpiry() : null
+        localTaskList[updateIdx].completed = setStatus
+        localTaskList[updateIdx].expiry = ttl
+        setLocalData('ML-pinnedTasks', localTaskList)
+      } else {
+        notificationCTX.setUpNotification(
+          `We couldn't find that task to update it!`,
+          'error'
+        )
+      }
     } else {
       notificationCTX.setUpNotification(
         `We couldn't find that task to update it!`,
@@ -85,14 +129,7 @@ export const PinnedTasksContextProvider = (props) => {
           deleteTaskStorage(task.id)
           return
         } else {
-          return (
-            <PinnedTask
-              key={task.id}
-              task={task.name}
-              id={task.id}
-              completed={task.completed}
-            />
-          )
+          return <PinnedTask key={task.id} task={task} />
         }
       })
       setTaskList([...localList])
@@ -104,8 +141,9 @@ export const PinnedTasksContextProvider = (props) => {
       value={{
         taskList: taskList,
         addTaskFunc: addTaskToList,
-        removeTaskFunc: removeTaskFromList,
-        updateStatusFunc: updateCompletedStatus,
+        removeTaskFunc: removeTaskFunc,
+        updateStatusFunc: updateStatusFunc,
+        updateTaskFunc: updateTaskFunc,
       }}
     >
       {props.children}

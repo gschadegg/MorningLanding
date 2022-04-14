@@ -42,6 +42,7 @@ export default function PinnedTaskList() {
             onKeyDown={onKeyDownHandler}
             value={newTask}
             onBlur={onBlurHandler}
+            title="New Reminder"
             placeholder="Click to add a pinned reminder"
           />
         </div>
