@@ -1,9 +1,7 @@
 import React from 'react'
-import { render, fireEvent, within, cleanup } from '@testing-library/react'
-import { v4 as uuidv4 } from 'uuid'
+import { render, fireEvent, within } from '@testing-library/react'
 import { PinnedTasksContextProvider } from '../../store/pinnedTasks-context'
-import PinnedTaskList from './../../components/Drawer/PinnedTasks/PinnedTaskList'
-import PinnedTask from './../../components/Drawer/PinnedTasks/PinnedTask'
+import PinnedTaskList from '../../components/Drawer/PinnedTasks/PinnedTaskList'
 
 describe('Adding New Reminders', () => {
   let container
@@ -80,12 +78,6 @@ describe('Adding New Reminders', () => {
 })
 
 describe('Pinned Reminder Actions', () => {
-  const singleReminder = {
-    text: 'this is a pinned reminder',
-    completed: false,
-    id: uuidv4(),
-  }
-
   let container
 
   beforeEach(() => {
@@ -135,7 +127,7 @@ describe('Pinned Reminder Actions', () => {
   })
 
   it('Edit Reminder', () => {
-    const editedListItem = container.getAllByTitle('Edit Reminder')[0]
+    const editedListItem = container.getByTitle('Edit Reminder')
     expect(editedListItem).toBeDefined()
 
     fireEvent.focus(editedListItem)

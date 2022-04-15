@@ -9,7 +9,9 @@
     "lint": "next lint",
     "test": "jest --runInBand",
     "test:watch": "jest --watch --verbose --runInBand",
-    "test:coverage": "jest --coverage"
+    "test:inprogress": "jest --watch --verbose --runInBand -- _tests__/unit/utilities.unit.test.js",
+    "test:coverage": "jest --coverage",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "axios": "^0.26.0",
