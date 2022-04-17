@@ -13,6 +13,16 @@
 
 .markdown__display {
   @apply overflow-auto;
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-bold capitalize tracking-widest;
+    font-variant: small-caps;
+  }
+  h1 {
+    @apply text-3xl;
+  }
   ol,
   ul,
   menu,

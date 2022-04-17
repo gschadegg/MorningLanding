@@ -44,8 +44,9 @@ export default function Notepad() {
             <Markdown options={{ forceBlock: true }}>{markdown}</Markdown>
           ) : (
             <i className={styles.markdown_placholder}>
-              Click to add your thoughts <br /> e.g. where do you want to pick
-              up from tomorrow?
+              Click to add your thoughts, e.g.
+              <br /> * where do you want to pick up from tomorrow?
+              <br /> * quick ideas from the last meeting?
             </i>
           )}
         </section>

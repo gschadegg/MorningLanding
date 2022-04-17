@@ -11,11 +11,14 @@ export const setExpiry = (ttlLength = 'onceDay') => {
         now.getSeconds()) *
       1000, // time to midnight in ms
   }
-  now.setTime(now.getTime() + ttl[ttlLength])
+  if (!ttl[ttlLength]) {
+    return null
+  } else {
+    now.setTime(now.getTime() + ttl[ttlLength])
+    const expiryData = now.getTime()
 
-  const expiryData = now.getTime()
-
-  return expiryData
+    return expiryData
+  }
 }
 
 export const pastExpiry = (expiry) => {

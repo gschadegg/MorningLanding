@@ -1,25 +1,73 @@
-import React from 'react'
-import { render, fireEvent, within } from '@testing-library/react'
-import util from './../../utils/index'
+import {
+  render,
+  fireEvent,
+  within,
+  LocalStorageMock,
+} from '@testing-library/react'
+import { setExpiry, pastExpiry } from './../../utils/index'
 
 describe('Expiry', () => {
-  it.todo('Setting Expiry for 1 Day')
+  it('Setting Expiry for 1 Day', () => {
+    const expiry = setExpiry()
+    let expiryDate = new Date(expiry)
+    expiryDate = new Date(
+      expiryDate.getFullYear(),
+      expiryDate.getMonth(),
+      expiryDate.getDate()
+    )
 
-  it.todo('Setting Expiry for 6 hours')
+    let shouldBeDate = new Date()
+    shouldBeDate.setDate(shouldBeDate.getDate() + 1)
+    shouldBeDate = new Date(
+      shouldBeDate.getFullYear(),
+      shouldBeDate.getMonth(),
+      shouldBeDate.getDate()
+    )
 
-  it.todo('Setting Expiry bad call')
+    expect(expiryDate).toEqual(shouldBeDate)
+  })
 
-  it.todo('Expiry has Expired')
+  it('Setting Expiry for 6 hours', () => {
+    const expiryDate = setExpiry('every6Hrs')
 
-  it.todo('Expiry has not Expired')
+    let shouldBeDate = new Date()
+    shouldBeDate.setTime(shouldBeDate.getTime() + 6 * 60 * 60 * 1000)
+
+    expect(expiryDate).toEqual(shouldBeDate.getTime())
+  })
+
+  it('Setting Expiry bad call', () => {
+    const expiryDate = setExpiry('BadCall')
+
+    expect(expiryDate).toBe(null)
+  })
+
+  it('Expiry has Expired', () => {
+    let expiryDate = setExpiry()
+    expiryDate = new Date(expiryDate)
+    expiryDate.setDate(expiryDate.getDate() - 1)
+    expiryDate = expiryDate.getTime()
+
+    const pastTheExpiry = pastExpiry(expiryDate)
+
+    expect(pastTheExpiry).toBe(true)
+  })
+
+  it('Expiry has not Expired', () => {
+    const expiryDate = setExpiry()
+
+    const activeExpiry = pastExpiry(expiryDate)
+
+    expect(activeExpiry).toBe(false)
+  })
 })
 
-describe('Local Data', () => {
-  it.todo('Fetch Local Data')
+// jest.spyOn(localStorage, "setItem");
+// localStorage.setItem = jest.fn();
 
-  it.todo('Local Data does not exist')
+// // works:
+// jest.spyOn(window.localStorage.__proto__, 'setItem');
+// window.localStorage.__proto__.setItem = jest.fn();
 
-  it.todo('Setting Local Data')
-
-  it.todo('Delete Local Data')
-})
+// // assertions as usual:
+// expect(localStorage.setItem).toHaveBeenCalled();

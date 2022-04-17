@@ -1,7 +1,5 @@
 describe('Morning Landing App', function () {
   before(() => {
-    cy.visit('http://localhost:3000')
-
     cy.intercept(
       {
         method: 'GET',
@@ -20,10 +18,12 @@ describe('Morning Landing App', function () {
         req.destroy()
       }
     )
+    cy.visit('http://localhost:3000')
   })
-  it('front page can be opened', function () {
+  it('front page can be opened & Clock Rendered', function () {
     cy.title('Morning Landing')
     cy.contains("View the Day's Actions")
+    cy.get('#clock').contains(/AM|PM/g)
   })
 
   it('action drawer can be opened & closed', function () {
@@ -33,6 +33,7 @@ describe('Morning Landing App', function () {
 
   it('settings can be opened & closed', function () {
     cy.contains('Settings').click()
+    cy.wait(500)
     cy.get('button[title="Close Settings"]').click()
   })
 })

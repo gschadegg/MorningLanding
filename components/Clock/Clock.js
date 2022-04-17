@@ -28,7 +28,7 @@ const Clock = () => {
 
       let greeting = 'Morning'
       if (ampm === 'PM') {
-        greeting = hours >= 6 ? 'Evening' : 'Afternoon'
+        greeting = hours >= 6 && hours !== 12 ? 'Evening' : 'Afternoon'
       }
 
       clockGreetingRef.current = `Good ${greeting}, It's Currently`
