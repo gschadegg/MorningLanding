@@ -73,6 +73,7 @@ export default function Settings({ toggleSettingsHandler, classes }) {
               'Failed to update your settings!',
               'error'
             )
+            throw new Error(error)
           }
         }}
       >

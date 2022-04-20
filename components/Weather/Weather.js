@@ -37,6 +37,7 @@ const Weather = ({ location }) => {
           "Weather couldn't be set for your location right now!",
           'error'
         )
+        throw new Error(error)
       }
     }
 

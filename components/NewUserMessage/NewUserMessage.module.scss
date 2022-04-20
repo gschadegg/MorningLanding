@@ -1,0 +1,4 @@
+.newUserMessage_container {
+  @apply absolute z-[1000] text-white top-0 w-[90%] left-[50%] bg-white/90;
+  transform: translate(-50%, 20px);
+}

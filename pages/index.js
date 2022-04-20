@@ -13,6 +13,7 @@ import Drawer from '../components/Drawer/Drawer'
 import Settings from './../components/Settings/Settings'
 import OutlinedButton from '../components/UI/Buttons/OutlinedButton'
 import QuickLinks from '../components/Widgets/QuickLinks/QuickLinks'
+import NewUserMessage from '../components/NewUserMessage/NewUserMessage'
 
 export default function Home() {
   const [showDrawer, setShowDrawer] = useState(false)
@@ -20,9 +21,11 @@ export default function Home() {
   const settingsCXT = useContext(SettingsContext)
 
   const toggleActionDrawer = () => {
+    setShowSettings(false)
     setShowDrawer((prevState) => !prevState)
   }
   const toggleSettingsPanel = () => {
+    setShowDrawer(false)
     setShowSettings((prevState) => !prevState)
   }
   return (
@@ -64,6 +67,10 @@ export default function Home() {
           <article>
             {/* right col */}
             {settingsCXT['Quick Links'] && <QuickLinks />}
+            {/* <NewUserMessage
+              toggleSettingsPanel={toggleSettingsPanel}
+              toggleActionDrawer={toggleActionDrawer}
+            /> */}
           </article>
         </section>
         <Drawer

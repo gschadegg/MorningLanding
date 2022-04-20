@@ -6,6 +6,8 @@ const getUnsplashBG = async () => {
     const res = await axios.get(`${unsplashURL}`)
     return res.data
   } catch (error) {
+    throw new Error(error)
+
     return null
   }
 }
@@ -16,7 +18,7 @@ const getWeather = async (location, unit = 'imperial') => {
     const res = await axios.get(`${weatherURL}`)
     return res.data
   } catch (error) {
-    return null
+    throw new Error(error)
   }
 }
 
@@ -26,7 +28,7 @@ const getLocation = async (lat, lng) => {
     const res = await axios.get(`${locationURL}`)
     return res.data
   } catch (error) {
-    return null
+    throw new Error(error)
   }
 }
 
@@ -36,7 +38,7 @@ const getLocationByCity = async (cityST) => {
     const res = await axios.get(`${locationURL}`)
     return res.data
   } catch (error) {
-    return null
+    throw new Error(error)
   }
 }
 
@@ -46,7 +48,7 @@ const getQuote = async () => {
     const res = await axios.get(`${quoteURL}`)
     return res.data
   } catch (error) {
-    return null
+    throw new Error(error)
   }
 }
 

@@ -128,6 +128,7 @@ export const SettingsContextProvider = (props) => {
         'There was an issue saving your new settings',
         'error'
       )
+      throw new Error(error)
     }
   }
 

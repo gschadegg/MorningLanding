@@ -1,15 +1,11 @@
 .main {
   @apply flex flex-col items-stretch min-h-[100vh] md:flex-row pt-16 mx-auto md:mx-16 w-[90%] justify-between;
-  // padding: 4rem 0;
   flex: 1;
-
-  // justify-content: space-between;
-  // margin: 0 4rem;
 }
 .main_col {
   @apply flex flex-col justify-between;
   & + .main_col {
-    @apply flex-1;
+    @apply flex-1 justify-start;
   }
 }
 .btn_settingsIcon {
