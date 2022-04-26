@@ -1,18 +1,23 @@
 import React from 'react'
 import styles from './NewUserMessage.module.scss'
+import OutlinedButton from '../UI/Buttons/OutlinedButton'
 
 export default function NewUserMessage({
+  toggleNewUser,
   toggleActionDrawer,
   toggleSettingsPanel,
 }) {
   return (
     <article className={styles.newUserMessage_container}>
-      <h2>Welcome to Your Morning Landing</h2>
+      <h2>
+        Welcome to Your <br />
+        <span>Morning Landing</span>
+      </h2>
       <section>
         <p>A quick dashboard to get your day started with </p>
         <ul>
           <li>Notes from the previous day,</li>
-          <li>Setting up your day's big three,</li>
+          <li>Set up three tasks that would make the day a success,</li>
           <li>Or simply a home for your main links to jump right in</li>
         </ul>
         <p>
@@ -21,8 +26,10 @@ export default function NewUserMessage({
           the day's Actions in the{' '}
           <button onClick={toggleActionDrawer}>Action bar</button>.
         </p>
-        <button>Sounds Easy Enough!</button>
       </section>
+      <OutlinedButton onClick={() => toggleNewUser(false)} classes={['dark']}>
+        Sounds Easy Enough!
+      </OutlinedButton>
     </article>
   )
 }

@@ -9,6 +9,8 @@ const SettingsContext = React.createContext({
   mainLocationData: {},
   widgetsSettings: [],
   activeWidgets: {},
+  newUser: '',
+  setupNewUser: (val) => {},
   updateWidgetSettings: (newSettings) => {},
   // updateUserLocation: (newLocation, country) => {},
 })
@@ -18,7 +20,7 @@ export const SettingsContextProvider = (props) => {
   const [mainLocationData, setMainLocationData] = useState()
   const [widgetsSettings, setWidgetsSettings] = useState([])
   const [activeWidgets, setActiveWidgets] = useState({})
-
+  const [newUser, setNewUser] = useState(false)
   const notificationCTX = useContext(NotificationContext)
 
   const fetchlocation = async (lat, lng, cityState) => {
@@ -42,6 +44,10 @@ export const SettingsContextProvider = (props) => {
         'error'
       )
     }
+  }
+
+  const setupNewUser = (val) => {
+    setNewUser(val)
   }
 
   const handleGeoLocationError = (error) => {
@@ -179,6 +185,17 @@ export const SettingsContextProvider = (props) => {
     }
   }, [])
 
+  useEffect(() => {
+    let isNewUser = getLocalData('ML-newUser')
+
+    if (isNewUser) {
+      setupNewUser(false)
+    } else {
+      setupNewUser(true)
+      setLocalData('ML-newUser', true)
+    }
+  }, [])
+
   return (
     <SettingsContext.Provider
       value={{
@@ -186,6 +203,8 @@ export const SettingsContextProvider = (props) => {
         mainLocationData: mainLocationData,
         widgetsSettings: widgetsSettings,
         activeWidgets: activeWidgets,
+        newUser: newUser,
+        setupNewUser: setupNewUser,
         // updateUserLocation: updateUserLocation,
         updateWidgetSettings: updateWidgetSettings,
       }}

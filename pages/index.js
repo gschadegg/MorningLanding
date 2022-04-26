@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect, useContext } from 'react'
-// import Link from 'next/link'
-// import Image from 'next/image'
+
 import SettingsContext from '../store/settings-context'
 import styles from '../styles/Home.module.scss'
 import DefaultHead from '../components/layout/DefaultHead'
@@ -48,29 +47,32 @@ export default function Home() {
           </button>
         </section>
         <section className={styles.main_col}>
-          {showDrawer ? (
+          {/* {showDrawer ? (
             ''
-          ) : (
-            <OutlinedButton
-              classes={[`btn-drawerToggle`]}
-              onClick={toggleActionDrawer}
-            >
-              <Icon
-                icon={'clarity:circle-arrow-line'}
-                width={24}
-                rotate={3}
-                inline={true}
-              />
-              View the Day's Actions
-            </OutlinedButton>
-          )}
-          <article>
+          ) : ( */}
+          <OutlinedButton
+            classes={[`btn-drawerToggle`, `${showDrawer ? 'invisible' : ''}`]}
+            onClick={toggleActionDrawer}
+          >
+            <Icon
+              icon={'clarity:circle-arrow-line'}
+              width={24}
+              rotate={3}
+              inline={true}
+            />
+            View the Day's Actions
+          </OutlinedButton>
+          {/* )} */}
+          <article className="flex justify-end">
             {/* right col */}
             {settingsCXT['Quick Links'] && <QuickLinks />}
-            {/* <NewUserMessage
-              toggleSettingsPanel={toggleSettingsPanel}
-              toggleActionDrawer={toggleActionDrawer}
-            /> */}
+            {settingsCXT.newUser && (
+              <NewUserMessage
+                toggleNewUser={settingsCXT.setupNewUser}
+                toggleSettingsPanel={toggleSettingsPanel}
+                toggleActionDrawer={toggleActionDrawer}
+              />
+            )}
           </article>
         </section>
         <Drawer

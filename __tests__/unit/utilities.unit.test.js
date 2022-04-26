@@ -1,9 +1,3 @@
-import {
-  render,
-  fireEvent,
-  within,
-  LocalStorageMock,
-} from '@testing-library/react'
 import { setExpiry, pastExpiry } from './../../utils/index'
 
 describe('Expiry', () => {
@@ -61,13 +55,3 @@ describe('Expiry', () => {
     expect(activeExpiry).toBe(false)
   })
 })
-
-// jest.spyOn(localStorage, "setItem");
-// localStorage.setItem = jest.fn();
-
-// // works:
-// jest.spyOn(window.localStorage.__proto__, 'setItem');
-// window.localStorage.__proto__.setItem = jest.fn();
-
-// // assertions as usual:
-// expect(localStorage.setItem).toHaveBeenCalled();

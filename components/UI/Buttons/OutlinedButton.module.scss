@@ -19,6 +19,9 @@
       @apply bg-white/30;
     }
   }
+  &[class*='invisible'] {
+    @apply invisible;
+  }
   &[class*='active'] {
     @apply z-[100] relative;
   }
