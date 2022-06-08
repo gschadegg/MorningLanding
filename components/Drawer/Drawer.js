@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { PinnedTasksContextProvider } from '../../store/pinnedTasks-context'
 import SettingsContext from '../../store/settings-context'
-import BigThree from './BigThree/BigThree'
+import BigThree from './BigThree/BigThreeGroup'
 import PinnedTaskList from './PinnedTasks/PinnedTaskList'
 import OutlinedButton from '../UI/Buttons/OutlinedButton'
 import styles from './Drawer.module.scss'

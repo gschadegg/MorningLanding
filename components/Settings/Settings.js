@@ -96,12 +96,12 @@ export default function Settings({ toggleSettingsHandler, classes }) {
                 component="div"
               />
             </div> */}
-            <div className={`${styles.form__group} ${styles.form__group_col}`}>
-              <div className={styles.form__label} id="checkbox-group">
+            <div className={`form__group styles.form__group_col`}>
+              <div className={'form__label'} id="checkbox-group">
                 Pick Your Widgets
               </div>
               <div
-                className={styles.form__checkboxGroup}
+                className={'form__checkboxGroup'}
                 role="group"
                 aria-labelledby="checkbox-group"
               >

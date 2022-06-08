@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './BigThree.module.scss'
 import DrawerWidget from '../DrawerWidget/DrawerWidget'
 import BigThreeTask from './BigThreeTask'
 

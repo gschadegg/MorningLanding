@@ -1,87 +1,54 @@
-import React, { useState, useEffect } from 'react'
-import styles from './BigThree.module.scss'
-import {
-  setExpiry,
-  pastExpiry,
-  setLocalData,
-  getLocalData,
-} from './../../../utils/index'
-import CompleteButton from '../../UI/Buttons/CompleteButton/CompleteButton'
+import React, { useEffect } from 'react'
+import { TaskBox } from '../../UI/TaskBox/TaskBox'
+import { useTaskBox } from '../../UI/TaskBox/useTaskBox'
 
-export default function BigThreeTask({ taskNum }) {
-  const [task, setTask] = useState('')
-  const [status, setStatus] = useState(false)
+export default function BigThreeTaskTest({ taskNum }) {
+  const {
+    task,
+    status,
+    setupData,
+    handleUpdateText,
+    handleUpdateStatus,
+    onBlurHandler,
+  } = useTaskBox({
+    initialTask: '',
+    initialStatus: false,
+    localStorageName: 'ML-bigThreeTasks',
+    taskNum: taskNum,
+  })
 
-  const updateTaskHandler = (e) => {
-    e.preventDefault()
-    setTask(e.target.value)
-  }
-
-  const onBlurHandler = async (e) => {
-    //save to localStorage object
-    const value = {
-      task: task,
-      completed: false,
-    }
-    let bigThreeTasks = getLocalData('ML-bigThreeTasks')
-
-    let ttl = setExpiry()
-    value.expiry = ttl
-
-    bigThreeTasks[taskNum] = value
-    setLocalData('ML-bigThreeTasks', bigThreeTasks)
-    setStatus(false)
-  }
-
-  const toggleTaskStatus = () => {
-    if (task) {
-      setStatus((prevState) => !prevState)
-    }
-  }
-
+  //fetch local data & display
   useEffect(() => {
-    let bigThreeTasks = getLocalData('ML-bigThreeTasks')
-    if (bigThreeTasks && bigThreeTasks[taskNum]) {
-      if (
-        bigThreeTasks[taskNum].completed &&
-        pastExpiry(bigThreeTasks[taskNum].expiry)
-      ) {
-        delete bigThreeTasks[taskNum]
-        setLocalData('ML-bigThreeTasks', bigThreeTasks)
-      } else {
-        setTask(bigThreeTasks[taskNum].task)
-        setStatus(bigThreeTasks[taskNum].completed)
-      }
-    }
+    setupData(taskNum, 'ML-bigThreeTasks')
   }, [])
 
-  //save status locally on change
-  useEffect(() => {
-    let bigThreeTasks = getLocalData('ML-bigThreeTasks')
-    if (bigThreeTasks && bigThreeTasks[taskNum]) {
-      bigThreeTasks[taskNum].completed = status
-      bigThreeTasks[taskNum].expiry = setExpiry()
-      setLocalData('ML-bigThreeTasks', bigThreeTasks)
-    }
-  }, [status, taskNum])
+  const updateText = (e) => {
+    handleUpdateText(e.target.value)
+  }
+
+  const toggleStatus = () => {
+    handleUpdateStatus(!status)
+  }
 
   return (
-    <div className={`${styles.bigThreeTask} ${status ? styles.completed : ''}`}>
-      <span>
-        <em>0{taskNum}</em>
-        <CompleteButton
-          title={status ? 'Un-Mark Completed Action' : 'Mark Action Complete'}
-          onClick={toggleTaskStatus}
-          classes={[status ? 'completed' : '']}
+    <>
+      <TaskBox value={{ task, status }}>
+        <TaskBox.Header>
+          <TaskBox.TaskNumber>
+            {taskNum < 10 ? `0${taskNum}` : taskNum}
+          </TaskBox.TaskNumber>
+          <TaskBox.CompleteBtn
+            title={status ? 'Un-Mark Completed Action' : 'Mark Action Complete'}
+            onClick={toggleStatus}
+            completed={status && status}
+          />
+        </TaskBox.Header>
+        <TaskBox.Text
+          value={task}
+          onChange={updateText}
+          onBlur={onBlurHandler}
         />
-      </span>
-      <textarea
-        title="Edit Action"
-        value={task}
-        placeholder="Add an action to focus on for today"
-        onChange={updateTaskHandler}
-        onBlur={onBlurHandler}
-      />
-    </div>
+      </TaskBox>
+    </>
   )
 }

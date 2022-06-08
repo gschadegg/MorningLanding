@@ -6,47 +6,47 @@
     @apply left-0 top-0;
     transition: all 0.4s ease-out;
   }
-  form {
-    @apply font-body flex flex-col flex-auto overflow-y-auto;
-    button[type='submit'] {
-      @apply mx-8 md:mx-16 font-display flex justify-center items-center text-xl font-bold capitalize  border-white border-2 rounded-full bg-white/10 p-1 transition-all;
-      font-variant: small-caps;
+  // form {
+  //   @apply font-body flex flex-col flex-auto overflow-y-auto;
+  //   button[type='submit'] {
+  //     @apply mx-8 md:mx-16 font-display flex justify-center items-center text-xl font-bold capitalize  border-white border-2 rounded-full bg-white/10 p-1 transition-all;
+  //     font-variant: small-caps;
 
-      &:hover,
-      &:focus {
-        @apply bg-white/20;
-      }
-      &:active {
-        @apply bg-white text-darkBlack;
-      }
-    }
-    input {
-      @apply border-white/60 rounded-full border-2 bg-white/10 text-white px-4 py-2;
-    }
-    .form__group {
-      @apply px-8 py-8 md:px-16 relative;
-      &:not(:last-of-type) {
-        @apply border-b-[1px] border-white/30;
-      }
-      &:last-of-type {
-        @apply flex-1;
-      }
-      &.form__group_inline {
-        .form__group_el {
-          @apply flex justify-between items-center;
-        }
-      }
+  //     &:hover,
+  //     &:focus {
+  //       @apply bg-white/20;
+  //     }
+  //     &:active {
+  //       @apply bg-white text-darkBlack;
+  //     }
+  //   }
+  //   input {
+  //     @apply border-white/60 rounded-full border-2 bg-white/10 text-white px-4 py-2;
+  //   }
+  //   .form__group {
+  //     @apply px-8 py-8 md:px-16 relative;
+  //     &:not(:last-of-type) {
+  //       @apply border-b-[1px] border-white/30;
+  //     }
+  //     &:last-of-type {
+  //       @apply flex-1;
+  //     }
+  //     &.form__group_inline {
+  //       .form__group_el {
+  //         @apply flex justify-between items-center;
+  //       }
+  //     }
 
-      &.form__group_col {
-        .form__label {
-          @apply mt-3;
-        }
-      }
-    }
-    .form_errorMessage {
-      @apply bg-white/80 rounded-lg block bottom-[-16px] right-0  text-darkBlack py-2 px-4 mt-4;
-    }
-  }
+  //     &.form__group_col {
+  //       .form__label {
+  //         @apply mt-3;
+  //       }
+  //     }
+  //   }
+  //   .form_errorMessage {
+  //     @apply bg-white/80 rounded-lg block bottom-[-16px] right-0  text-darkBlack py-2 px-4 mt-4;
+  //   }
+  // }
 }
 
 .settings__header {
@@ -69,9 +69,9 @@
     }
   }
 }
-.form__label {
-  @apply text-lg;
-}
-.form__checkboxGroup {
-  @apply flex flex-wrap justify-between mt-7;
-}
+// .form__label {
+//   @apply text-lg;
+// }
+// .form__checkboxGroup {
+//   @apply flex flex-wrap justify-between mt-7;
+// }

@@ -1,0 +1,15 @@
+.btn_icon {
+  @apply bg-black/50 text-white/50 rounded-xl p-6;
+
+  &:hover,
+  &:focus {
+    @apply bg-black/80 text-white/80;
+  }
+  &[class*='dark'] {
+    @apply bg-white/10 text-white;
+    &:hover,
+    &:focus {
+      @apply bg-white/60 text-darkBlack;
+    }
+  }
+}

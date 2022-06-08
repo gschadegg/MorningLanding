@@ -1,4 +1,4 @@
-.bigThreeTask {
+.TaskBox {
   @apply bg-white/40 backdrop-blur-sm rounded-lg  h-[240px] px-6 py-5 flex flex-col mb-4 md:mr-4 flex-1;
   &:last-child {
     @apply md:mr-0;

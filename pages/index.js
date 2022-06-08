@@ -66,6 +66,7 @@ export default function Home() {
           <article className="flex justify-end">
             {/* right col */}
             {settingsCXT['Quick Links'] && <QuickLinks />}
+            <QuickLinks />
             {settingsCXT.newUser && (
               <NewUserMessage
                 toggleNewUser={settingsCXT.setupNewUser}
