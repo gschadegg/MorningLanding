@@ -1,13 +1,13 @@
 import { useEffect, useState, useContext } from 'react'
-import NotificationContext from '../../store/notification-context'
-import SettingsContext from '../../store/settings-context'
-import services from './../../services/index'
+import NotificationContext from '../../../store/notification-context'
+import SettingsContext from '../../../store/settings-context'
+import services from '../../../services/index'
 import {
   setExpiry,
   pastExpiry,
   setLocalData,
   getLocalData,
-} from './../../utils/index'
+} from '../../../utils/index'
 import styles from './Quote.module.scss'
 
 const Quote = ({}) => {

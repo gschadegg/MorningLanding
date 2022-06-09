@@ -1,9 +1,9 @@
 import { useContext } from 'react'
 
 import styles from './LocationBlock.module.scss'
-import Clock from '../Clock/Clock'
-import Weather from '../Weather/Weather'
-import DateStamp from '../DateStamp/DateStamp'
+import Clock from '../Widgets/Clock/Clock'
+import Weather from '../Widgets/Weather/Weather'
+import DateStamp from '../Widgets/DateStamp/DateStamp'
 import SettingsContext from '../../store/settings-context'
 
 const LocationBlock = () => {

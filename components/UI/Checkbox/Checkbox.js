@@ -4,7 +4,7 @@ import { Icon } from '@iconify/react'
 
 import styles from './Checkbox.module.scss'
 
-export default function Checkbox({ valueName, disabled = false }) {
+export default function Checkbox({ valueName, disabled = false, ...args }) {
   return (
     <label className={styles.form__checkbox}>
       <Field

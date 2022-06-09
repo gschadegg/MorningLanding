@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
-import { useMounted } from '../../hooks'
+import { useMounted } from '../../../hooks'
 import styles from './Clock.module.scss'
 
 const Clock = () => {

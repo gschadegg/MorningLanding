@@ -1,7 +1,7 @@
 .newUserMessage_container {
   @apply absolute z-[1000] text-darkBlack rounded-lg top-0 translate-y-[20px] translate-x-[-50%] w-[90%] h-[90%] left-[50%] bg-white/60 backdrop-blur py-6 px-6 flex flex-col justify-between
      sm:h-auto sm:justify-start md:w-[65%]
-     lg:relative lg:w-[calc(100%_-_60px)] lg:px-14 lg:pt-10 lg:mt-20 lg:max-w-[600px] lg:left-[auto] lg:transform-none;
+     lg:relative lg:w-[calc(100%_-_60px)] lg:px-14 lg:pt-14 lg:px-[6rem] lg:mt-20 lg:max-w-[600px] lg:left-[auto] lg:transform-none;
   // transform: translate(-50%, 20px);
 
   h2 {

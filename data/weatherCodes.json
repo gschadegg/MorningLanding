@@ -52,163 +52,163 @@
     "night": "fluent:weather-squalls-48-regular"
   },
   "600": {
-    "day": "weather-snow-shower-day-48-regular",
-    "night": "weather-snow-shower-night-48-regular"
+    "day": "fluent:weather-snow-shower-day-48-regular",
+    "night": "fluent:weather-snow-shower-night-48-regular"
   },
   "601": {
-    "day": "weather-snow-48-regular",
-    "night": "weather-snow-48-regular"
+    "day": "fluent:weather-snow-48-regular",
+    "night": "fluent:weather-snow-48-regular"
   },
   "602": {
-    "day": "weather-snowflake-48-regular",
-    "night": "weather-snowflake-48-regular"
+    "day": "fluent:weather-snowflake-48-regular",
+    "night": "fluent:weather-snowflake-48-regular"
   },
   "611": {
-    "day": "weather-rain-snow-48-regular",
-    "night": "weather-rain-snow-48-regular"
+    "day": "fluent:weather-rain-snow-48-regular",
+    "night": "fluent:weather-rain-snow-48-regular"
   },
   "612": {
-    "day": "weather-rain-snow-48-regular",
-    "night": "weather-rain-snow-48-regular"
+    "day": "fluent:weather-rain-snow-48-regular",
+    "night": "fluent:weather-rain-snow-48-regular"
   },
   "613": {
-    "day": "weather-rain-snow-48-regular",
-    "night": "weather-rain-snow-48-regular"
+    "day": "fluent:weather-rain-snow-48-regular",
+    "night": "fluent:weather-rain-snow-48-regular"
   },
   "615": {
-    "day": "weather-rain-snow-48-regular",
-    "night": "weather-rain-snow-48-regular"
+    "day": "fluent:weather-rain-snow-48-regular",
+    "night": "fluent:weather-rain-snow-48-regular"
   },
   "616": {
-    "day": "weather-rain-snow-48-regular",
-    "night": "weather-rain-snow-48-regular"
+    "day": "fluent:weather-rain-snow-48-regular",
+    "night": "fluent:weather-rain-snow-48-regular"
   },
   "620": {
-    "day": "weather-snow-shower-day-48-regular",
-    "night": "weather-snow-shower-night-48-regular"
+    "day": "fluent:weather-snow-shower-day-48-regular",
+    "night": "fluent:weather-snow-shower-night-48-regular"
   },
   "621": {
-    "day": "weather-snow-shower-day-48-regular",
-    "night": "weather-snow-shower-night-48-regular"
+    "day": "fluent:weather-snow-shower-day-48-regular",
+    "night": "fluent:weather-snow-shower-night-48-regular"
   },
   "622": {
-    "day": "weather-snowflake-48-regular",
-    "night": "weather-snowflake-48-regular"
+    "day": "fluent:weather-snowflake-48-regular",
+    "night": "fluent:weather-snowflake-48-regular"
   },
   "500": {
-    "day": "weather-drizzle-48-regular",
-    "night": "weather-drizzle-48-regular"
+    "day": "fluent:weather-drizzle-48-regular",
+    "night": "fluent:weather-drizzle-48-regular"
   },
   "501": {
-    "day": "weather-rain-showers-day-48-regular",
-    "night": "weather-rain-showers-night-48-regular"
+    "day": "fluent:weather-rain-showers-day-48-regular",
+    "night": "fluent:weather-rain-showers-night-48-regular"
   },
   "502": {
-    "day": "weather-rain-48-regular",
-    "night": "weather-rain-48-regular"
+    "day": "fluent:weather-rain-48-regular",
+    "night": "fluent:weather-rain-48-regular"
   },
   "503": {
-    "day": "weather-rain-48-regular",
-    "night": "weather-rain-48-regular"
+    "day": "fluent:weather-rain-48-regular",
+    "night": "fluent:weather-rain-48-regular"
   },
   "504": {
-    "day": "weather-rain-48-regular",
-    "night": "weather-rain-48-regular"
+    "day": "fluent:weather-rain-48-regular",
+    "night": "fluent:weather-rain-48-regular"
   },
   "505": {
-    "day": "weather-rain-48-regular",
-    "night": "weather-rain-48-regular"
+    "day": "fluent:weather-rain-48-regular",
+    "night": "fluent:weather-rain-48-regular"
   },
   "511": {
-    "day": "weather-hail-day-48-regular",
-    "night": "weather-hail-night-48-regular"
+    "day": "fluent:weather-hail-day-48-regular",
+    "night": "fluent:weather-hail-night-48-regular"
   },
   "520": {
-    "day": "weather-rain-48-regular",
-    "night": "weather-rain-48-regular"
+    "day": "fluent:weather-rain-48-regular",
+    "night": "fluent:weather-rain-48-regular"
   },
   "521": {
-    "day": "weather-rain-showers-day-48-regular",
-    "night": "weather-rain-showers-night-48-regular"
+    "day": "fluent:weather-rain-showers-day-48-regular",
+    "night": "fluent:weather-rain-showers-night-48-regular"
   },
   "522": {
-    "day": "weather-rain-48-regular",
-    "night": "weather-rain-48-regular"
+    "day": "fluent:weather-rain-48-regular",
+    "night": "fluent:weather-rain-48-regular"
   },
   "531": {
-    "day": "weather-rain-showers-day-48-regular",
-    "night": "weather-rain-showers-night-48-regular"
+    "day": "fluent:weather-rain-showers-day-48-regular",
+    "night": "fluent:weather-rain-showers-night-48-regular"
   },
   "300": {
-    "day": "weather-drizzle-48-regular",
-    "night": "weather-drizzle-48-regular"
+    "day": "fluent:weather-drizzle-48-regular",
+    "night": "fluent:weather-drizzle-48-regular"
   },
   "301": {
-    "day": "weather-drizzle-48-regular",
-    "night": "weather-drizzle-48-regular"
+    "day": "fluent:weather-drizzle-48-regular",
+    "night": "fluent:weather-drizzle-48-regular"
   },
   "302": {
-    "day": "weather-drizzle-48-regular",
-    "night": "weather-drizzle-48-regular"
+    "day": "fluent:weather-drizzle-48-regular",
+    "night": "fluent:weather-drizzle-48-regular"
   },
   "310": {
-    "day": "weather-rain-showers-day-48-regular",
-    "night": "weather-rain-showers-night-48-regular"
+    "day": "fluent:weather-rain-showers-day-48-regular",
+    "night": "fluent:weather-rain-showers-night-48-regular"
   },
   "311": {
-    "day": "weather-drizzle-48-regular",
-    "night": "weather-drizzle-48-regular"
+    "day": "fluent:weather-drizzle-48-regular",
+    "night": "fluent:weather-drizzle-48-regular"
   },
   "312": {
-    "day": "weather-drizzle-48-regular",
-    "night": "weather-drizzle-48-regular"
+    "day": "fluent:weather-drizzle-48-regular",
+    "night": "fluent:weather-drizzle-48-regular"
   },
   "313": {
-    "day": "weather-drizzle-48-regular",
-    "night": "weather-drizzle-48-regular"
+    "day": "fluent:weather-drizzle-48-regular",
+    "night": "fluent:weather-drizzle-48-regular"
   },
   "314": {
-    "day": "weather-rain-48-regular",
-    "night": "weather-rain-48-regular"
+    "day": "fluent:weather-rain-48-regular",
+    "night": "fluent:weather-rain-48-regular"
   },
   "321": {
-    "day": "weather-drizzle-48-regular",
-    "night": "weather-drizzle-48-regular"
+    "day": "fluent:weather-drizzle-48-regular",
+    "night": "fluent:weather-drizzle-48-regular"
   },
   "200": {
-    "day": "weather-thunderstorm-48-regular",
-    "night": "weather-thunderstorm-48-regular"
+    "day": "fluent:weather-thunderstorm-48-regular",
+    "night": "fluent:weather-thunderstorm-48-regular"
   },
   "201": {
-    "day": "weather-thunderstorm-48-regular",
-    "night": "weather-thunderstorm-48-regular"
+    "day": "fluent:weather-thunderstorm-48-regular",
+    "night": "fluent:weather-thunderstorm-48-regular"
   },
   "202": {
-    "day": "weather-thunderstorm-48-regular",
-    "night": "weather-thunderstorm-48-regular"
+    "day": "fluent:weather-thunderstorm-48-regular",
+    "night": "fluent:weather-thunderstorm-48-regular"
   },
   "210": {
-    "day": "weather-thunderstorm-48-regular",
-    "night": "weather-thunderstorm-48-regular"
+    "day": "fluent:weather-thunderstorm-48-regular",
+    "night": "fluent:weather-thunderstorm-48-regular"
   },
   "211": {
-    "day": "weather-thunderstorm-48-regular",
-    "night": "weather-thunderstorm-48-regular"
+    "day": "fluent:weather-thunderstorm-48-regular",
+    "night": "fluent:weather-thunderstorm-48-regular"
   },
   "221": {
-    "day": "weather-thunderstorm-48-regular",
-    "night": "weather-thunderstorm-48-regular"
+    "day": "fluent:weather-thunderstorm-48-regular",
+    "night": "fluent:weather-thunderstorm-48-regular"
   },
   "230": {
-    "day": "weather-thunderstorm-48-regular",
-    "night": "weather-thunderstorm-48-regular"
+    "day": "fluent:weather-thunderstorm-48-regular",
+    "night": "fluent:weather-thunderstorm-48-regular"
   },
   "231": {
-    "day": "weather-thunderstorm-48-regular",
-    "night": "weather-thunderstorm-48-regular"
+    "day": "fluent:weather-thunderstorm-48-regular",
+    "night": "fluent:weather-thunderstorm-48-regular"
   },
   "232": {
-    "day": "weather-thunderstorm-48-regular",
-    "night": "weather-thunderstorm-48-regular"
+    "day": "fluent:weather-thunderstorm-48-regular",
+    "night": "fluent:weather-thunderstorm-48-regular"
   }
 }

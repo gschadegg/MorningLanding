@@ -1,15 +1,15 @@
 import { useEffect, useState, useContext } from 'react'
-import NotificationContext from '../../store/notification-context'
-import services from './../../services/index'
+import NotificationContext from '../../../store/notification-context'
+import services from '../../../services/index'
 import {
   setExpiry,
   pastExpiry,
   setLocalData,
   getLocalData,
   deleteLocalData,
-} from '../../utils'
+} from '../../../utils/index'
 import styles from './Weather.module.scss'
-import weatherCodes from './../../data/weatherCodes.json'
+import weatherCodes from '../../../data/weatherCodes.json'
 
 import { Icon } from '@iconify/react'
 
@@ -56,7 +56,6 @@ const Weather = ({ location }) => {
     weather?.weather[0].icon.slice(-1) === 'd'
       ? `${weatherCodes[weather?.weather[0].id]?.day}`
       : `${weatherCodes[weather?.weather[0].id]?.night}`
-
   return (
     <>
       {weather && (

@@ -4,7 +4,7 @@ import SettingsContext from '../store/settings-context'
 import styles from '../styles/Home.module.scss'
 import DefaultHead from '../components/layout/DefaultHead'
 import GeneralLayout from '../components/layout/GeneralLayout'
-import Quote from '../components/Quote/Quote'
+import Quote from '../components/Widgets/Quote/Quote'
 
 import LocationBlock from '../components/LocationBlock/LocationBlock'
 import { Icon } from '@iconify/react'
@@ -65,14 +65,16 @@ export default function Home() {
           {/* )} */}
           <article className="flex justify-end">
             {/* right col */}
-            {settingsCXT['Quick Links'] && <QuickLinks />}
-            <QuickLinks />
-            {settingsCXT.newUser && (
+            {/* {settingsCXT['Quick Links'] && <QuickLinks />} */}
+            {/* <QuickLinks /> */}
+            {settingsCXT.newUser ? (
               <NewUserMessage
                 toggleNewUser={settingsCXT.setupNewUser}
                 toggleSettingsPanel={toggleSettingsPanel}
                 toggleActionDrawer={toggleActionDrawer}
               />
+            ) : (
+              <QuickLinks />
             )}
           </article>
         </section>
