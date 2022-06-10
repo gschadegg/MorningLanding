@@ -8,7 +8,7 @@ const DefaultHead = ({ title }) => {
       <meta name="author" content="Gretchen Schadegg" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-      <meta name="description" content="NEEEWW desc here!" />
+      <meta name="description" content="desc here!" />
       <link rel="icon" href="/favicon.svg" />
       <meta
         name="keywords"
@@ -25,7 +25,7 @@ const DefaultHead = ({ title }) => {
         name="twitter:card"
         content={`https://morning-landing.vercel.app${coverImg.src}`}
       />
-      <meta property="og:description" content="NEEEWW desc here!" />
+      <meta property="og:description" content="desc here!" />
       <meta property="og:site_name" content={title} />
       <meta
         name="twitter:image:alt"

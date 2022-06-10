@@ -8,7 +8,6 @@ import {
 } from '../utils/index'
 
 import NotificationContext from './notification-context'
-import PinnedTask from '../components/Drawer/PinnedTasks/PinnedTask'
 
 // default context
 const PinnedTasksContext = React.createContext({
@@ -124,7 +123,6 @@ export const PinnedTasksContextProvider = (props) => {
 
   useEffect(() => {
     let localTaskList = getLocalData('ML-pinnedTasks')
-    console.log('localTaskList', localTaskList)
     if (localTaskList) {
       const localList = localTaskList.map((task) => {
         if (task.completed && pastExpiry(task.expiry)) {

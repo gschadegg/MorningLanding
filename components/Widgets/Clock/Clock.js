@@ -1,5 +1,4 @@
-import { useRef, useEffect, useState } from 'react'
-import { useMounted } from '../../../hooks'
+import { useRef, useEffect, useState, useMemo } from 'react'
 import styles from './Clock.module.scss'
 
 const Clock = () => {
@@ -9,15 +8,17 @@ const Clock = () => {
     seconds: '00',
     ampm: '--',
   })
-  let date = new Date()
 
   // get written out timezone
-  const timezone = date
-    .toLocaleDateString([], {
-      day: '2-digit',
-      timeZoneName: 'short',
-    })
-    .slice(4)
+  const timezone = useMemo(() => {
+    let date = new Date()
+    return date
+      .toLocaleDateString([], {
+        day: '2-digit',
+        timeZoneName: 'short',
+      })
+      .slice(4)
+  }, [])
 
   useEffect(() => {
     const runTime = () => {

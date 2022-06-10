@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useMemo } from 'react'
 import styles from './DateStamp.module.scss'
 
 const DateStamp = () => {
@@ -15,11 +15,12 @@ const DateStamp = () => {
   let date = new Date()
 
   // get written out date
-  let dateDisplay = `${Intl.DateTimeFormat([], { month: 'long' }).format(
-    date
-  )} ${date.getDate()}, ${date.getFullYear()}`
+  let dateDisplay = useMemo(() => {
+    return `${Intl.DateTimeFormat([], { month: 'long' }).format(
+      date
+    )} ${date.getDate()}, ${date.getFullYear()}`
+  }, [])
   dateContainer.current = dateDisplay
-
   return (
     <section className={styles.dateStamp}>
       <div className={styles.dateStamp_day}>
