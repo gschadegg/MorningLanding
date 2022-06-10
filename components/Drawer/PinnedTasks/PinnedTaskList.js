@@ -1,8 +1,9 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useMemo } from 'react'
 import PinnedTasksContext from '../../../store/pinnedTasks-context'
 import styles from './PinnedTasks.module.scss'
 import DrawerWidget from '../DrawerWidget/DrawerWidget'
 import { Icon } from '@iconify/react'
+import PinnedTask from './PinnedTask'
 
 export default function PinnedTaskList() {
   const [newTask, setNewTask] = useState('')
@@ -26,6 +27,11 @@ export default function PinnedTaskList() {
       setNewTask('')
     }
   }
+  const taskList = useMemo(() => {
+    return pinnedTaskCTX.taskList.map((task) => (
+      <PinnedTask key={task.id} task={task} />
+    ))
+  }, [pinnedTaskCTX.taskList])
 
   return (
     <DrawerWidget
@@ -49,7 +55,7 @@ export default function PinnedTaskList() {
       }
     >
       <ul id="pinnedTask_list" className={styles.pinnedTask_list}>
-        {pinnedTaskCTX.taskList}
+        {taskList}
       </ul>
     </DrawerWidget>
   )

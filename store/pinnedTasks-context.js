@@ -20,7 +20,7 @@ const PinnedTasksContext = React.createContext({
 })
 
 export const PinnedTasksContextProvider = (props) => {
-  const [taskList, setTaskList] = useState([]) // array of components
+  const [taskList, setTaskList] = useState([]) // array of tasks
   const notificationCTX = useContext(NotificationContext)
 
   //add single task to List
@@ -31,9 +31,8 @@ export const PinnedTasksContextProvider = (props) => {
       completed: false,
       id: newID,
     }
-    let newPinned = <PinnedTask key={newID} task={taskObj} />
 
-    setTaskList((prevState) => [...prevState, newPinned])
+    setTaskList((prevState) => [...prevState, taskObj])
 
     let localTaskList = getLocalData('ML-pinnedTasks')
     localTaskList = localTaskList ? localTaskList : []
@@ -81,7 +80,8 @@ export const PinnedTasksContextProvider = (props) => {
   }
   //removes single task from list
   const removeTaskFunc = (el) => {
-    let idx = taskList?.findIndex((task) => task.props.task.id === el.id)
+    console.log(taskList)
+    let idx = taskList?.findIndex((task) => task.id === el.id)
     let newList = taskList
 
     if (idx > -1 && idx < taskList.length) {
@@ -124,13 +124,14 @@ export const PinnedTasksContextProvider = (props) => {
 
   useEffect(() => {
     let localTaskList = getLocalData('ML-pinnedTasks')
+    console.log('localTaskList', localTaskList)
     if (localTaskList) {
       const localList = localTaskList.map((task) => {
         if (task.completed && pastExpiry(task.expiry)) {
           deleteTaskStorage(task.id)
           return
         } else {
-          return <PinnedTask key={task.id} task={task} />
+          return task
         }
       })
       setTaskList([...localList])
