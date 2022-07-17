@@ -1,45 +1,71 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { v4 as uuidv4 } from 'uuid'
 
-export default function QuickLinkForm({
-  onSubmit,
-  toggleShowForm,
-  content = null,
-}) {
+import NotificationContext from './../../../store/notification-context'
+
+import * as styles from './QuickLinks.module.scss'
+
+export default function QuickLinkForm({ onSubmit, content = null, closeForm }) {
+  // (https?:\\/\\/)?' + // protocol
+  const notificationCTX = useContext(NotificationContext)
+  const isValidUrl = (urlString) => {
+    var urlPattern = new RegExp(
+      // '^(?:(?:https?|ftp)://)?(?:(?!(?:10|127)(?:.d{1,3}){3})(?!(?:169.254|192.168)(?:.d{1,3}){2})(?!172.(?:1[6-9]|2d|3[0-1])(?:.d{1,3}){2})(?:[1-9]d?|1dd|2[01]d|22[0-3])(?:.(?:1?d{1,2}|2[0-4]d|25[0-5])){2}(?:.(?:[1-9]d?|1dd|2[0-4]d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:.(?:[a-z\u00a1-\uffff]{2,})))(?::d{2,5})?(?:/S*)?$/'
+      '((http|https)://)(www.)?[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)'
+      // '^((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name
+      //   '((\\d{1,3}\\.){3}\\d{1,3}))' + // ip (v4) address
+      //   '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + //port
+      //   '(\\?[;&amp;a-z\\d%_.~+=-]*)?' + // query string
+      //   '(\\#[-a-z\\d_]*)?$',
+      // 'i'
+    )
+    return !!urlPattern.test(urlString)
+  }
+  let submitAction
+
   return (
-    <article onBlur={toggleShowForm}>
-      {/* <form onSubmit={onSubmit}>
-        <input autoFocus />
-        <button onClick={() => setShowForm(false)}>save</button>
-      </form> */}
-
+    <article className={`lg:arrow-up ${styles.quickLink_form}`} tabIndex="0">
       <Formik
         initialValues={{
           url: content?.url || '',
           title: content?.label || '',
         }}
         enableReinitialize
-        // validate={(values) => {
-        //   const errors = {}
-        //   if (
-        //     values.location &&
-        //     !/^([^,]+), ([A-Z]{2})$/i.test(values.location)
-        //   ) {
-        //     errors.location = 'Invalid location or format!'
-        //   }
-        //   return errors
-        // }}
+        validate={(values) => {
+          const errors = {}
+          if (isValidUrl(values.url)) {
+            errors.url = 'Invalid URL!'
+          }
+
+          return errors
+        }}
         onSubmit={(values, { setSubmitting }) => {
           try {
             // setLocalData('ML-settings', values)
             // settingsCXT.updateWidgetSettings(values.activeWidgets)
             // settingsCXT.updateUserLocation(values.location)
+            let ql = {
+              id: content?.id || uuidv4(),
+              url: values.url || '',
+              label: values.title || '',
+            }
+            if (submitAction === 'ql_delete') {
+              ql = {
+                ...ql,
+                url: '',
+              }
+            }
+            let message = 'Your Quick Link has been updated!'
+            if (ql.url === '') {
+              message = 'Your Quick Link has been successfully removed!'
+            } else if (!content?.id) {
+              message = 'Your Quick Link has been successfully created!'
+            }
+            onSubmit(ql)
             setSubmitting(false)
-
-            notificationCTX.setUpNotification(
-              'Your Quick Link has been updated!',
-              'success'
-            )
+            closeForm()
+            notificationCTX.setUpNotification(message, 'success')
           } catch (error) {
             notificationCTX.setUpNotification(
               'Failed to update your Quick Link!',
@@ -49,7 +75,7 @@ export default function QuickLinkForm({
           }
         }}
       >
-        {({ isSubmitting }) => (
+        {({ handleSubmit, isSubmitting, values }) => (
           <Form>
             <div className={`form__group form__group_inline`}>
               <div className={`form__group_el`}>
@@ -64,7 +90,6 @@ export default function QuickLinkForm({
                   placeholder="ex: www.google.com"
                 />
               </div>
-
               <ErrorMessage
                 className={'form_errorMessage'}
                 name="url"
@@ -80,15 +105,34 @@ export default function QuickLinkForm({
                 <Field type="text" name="title" placeholder="ex: Google" />
               </div>
 
-              <ErrorMessage
+              {/* <ErrorMessage
                 className={'form_errorMessage'}
                 name="title"
                 component="div"
-              />
+              /> */}
             </div>
-            <button type="submit" disabled={isSubmitting}>
+            <button
+              className="form_submitBtn"
+              disabled={isSubmitting || values.url === ''}
+              onClick={() => {
+                submitAction = 'ql_save'
+                handleSubmit()
+              }}
+            >
               Save Quick Link
             </button>
+            {content?.id && (
+              <button
+                className="form_secondaryBtn"
+                disabled={isSubmitting}
+                onClick={() => {
+                  submitAction = 'ql_delete'
+                  handleSubmit()
+                }}
+              >
+                Delete Quick Link
+              </button>
+            )}
           </Form>
         )}
       </Formik>

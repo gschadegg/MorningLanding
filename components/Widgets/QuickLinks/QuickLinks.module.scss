@@ -1,0 +1,65 @@
+.quickLink {
+  @apply font-body flex flex-col items-center lg:relative;
+  [class*='quickLink_editBtn'] {
+    @apply my-1;
+  }
+}
+
+.quickLink_button {
+  @apply flex flex-col mt-3 rounded-xl bg-black/0;
+  padding: 12px;
+  text-align: center;
+  color: #fff;
+  transition: background-color 0.15s ease-in;
+}
+
+.quickLink_icon {
+  @apply rounded-xl bg-white/30 min-w-[88px] min-h-[88px] flex justify-center items-center;
+  box-shadow: 0 2px 4px 3px rgba(0, 0, 0, 0.2);
+  padding: 12px;
+  max-height: 96px;
+  max-width: 96px;
+  margin-bottom: 8px;
+  transition: background-color 0.15s ease-in;
+  img {
+    @apply rounded-xl;
+  }
+}
+
+[class*='active'] {
+  .quickLink_button {
+    @apply bg-black/40;
+  }
+  .quickLink_icon {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+//form{
+.quickLink_form {
+  @apply absolute bottom-0 left-[50%] translate-x-[-50%] lg:bottom-[unset] lg:left-[unset] lg:translate-x-0 lg:top-[calc(100%+16px)] bg-black rounded-xl pb-8 z-10;
+  button[type='submit'],
+  button[class*='form_submitBtn'] {
+    @apply mt-6;
+  }
+}
+
+//list
+.quickLinks_list {
+  @apply flex;
+}
+
+.quickLinks_addBtn {
+  @apply mt-[4.1rem] ml-3 flex flex-col items-center h-[max-content] lg:relative;
+  button {
+    svg {
+      @apply rotate-0 transition-all;
+    }
+    &.quickLinks_addBtn_active {
+      @apply bg-black/80 text-white/80;
+      svg {
+        @apply rotate-45;
+      }
+    }
+  }
+}
