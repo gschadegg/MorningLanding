@@ -1,15 +1,15 @@
 .main {
-  @apply flex flex-col items-stretch min-h-[100vh] md:flex-row pt-16 mx-auto md:mx-16 w-[90%] justify-between;
+  @apply flex flex-col items-stretch min-h-[100vh] lg:flex-row pt-16 mx-auto lg:mx-16 w-[90%] justify-between;
   flex: 1;
 }
 .main_col {
   @apply flex flex-col justify-between;
   & + .main_col {
-    @apply flex-1 justify-start;
+    @apply flex-1 justify-start relative;
   }
 }
 .btn_settingsIcon {
-  @apply mt-8 flex items-center absolute top-0 rounded-full md:mt-0 sm:relative transition-all mb-[46px] sm:self-start;
+  @apply mt-8 flex items-center absolute top-0 rounded-full lg:mt-0 sm:relative transition-all mb-[46px] sm:self-start;
   span {
     @apply opacity-0  transition-all pr-8 font-bold capitalize tracking-widest;
     font-variant: small-caps;

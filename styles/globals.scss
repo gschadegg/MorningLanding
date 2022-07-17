@@ -22,4 +22,15 @@ body {
 @layer components {
 }
 @layer utilities {
+  .arrow-up {
+    @apply relative;
+  }
+  .arrow-up:before {
+    @apply w-0 h-0 absolute top-[-12px] left-1/2 content-[''];
+    transform: translate(-50%, 0);
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+
+    border-bottom: 12px solid black;
+  }
 }

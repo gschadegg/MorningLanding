@@ -1,7 +1,8 @@
 form {
   @apply font-body flex flex-col flex-auto overflow-y-auto text-white;
-  button[type='submit'] {
-    @apply mx-8 md:mx-16 font-display flex justify-center items-center text-xl font-bold capitalize  border-white border-2 rounded-full bg-white/10 p-1 transition-all;
+  button[type='submit'],
+  button.form_submitBtn {
+    @apply mx-8 my-3 md:mx-16 font-display flex justify-center items-center text-xl font-bold capitalize  border-white border-2 rounded-full bg-white/10 p-1 transition-all;
     font-variant: small-caps;
 
     &:hover,
@@ -11,9 +12,35 @@ form {
     &:active {
       @apply bg-white text-darkBlack;
     }
+    &:disabled {
+      @apply cursor-not-allowed opacity-50 bg-white/10;
+    }
+  }
+  button.form_secondaryBtn {
+    @apply mx-8 my-1 md:mx-16 text-white/50 font-display flex justify-center items-center text-base font-bold capitalize rounded-full underline p-1 transition-all;
+    font-variant: small-caps;
+
+    &:hover,
+    &:focus {
+      @apply bg-white/10 text-white/80;
+    }
+    &:active {
+      @apply bg-white text-darkBlack;
+    }
+    &:disabled {
+      @apply cursor-not-allowed opacity-80 bg-white/0 text-white/50;
+    }
   }
   input {
-    @apply border-white/60 rounded-full border-2 bg-white/10 text-white px-4 py-2;
+    @apply border-2 border-white/0 rounded-full  bg-white/10 text-white px-4 py-2 transition-all;
+
+    &:hover {
+      @apply bg-white/20;
+    }
+    &:focus,
+    &:focus-visible {
+      @apply bg-white/30 border-white/0;
+    }
   }
   .form__group {
     @apply px-8 py-8 md:px-16 relative;
@@ -26,6 +53,9 @@ form {
     &.form__group_inline {
       .form__group_el {
         @apply flex justify-between items-center;
+      }
+      .form__label {
+        @apply mr-3;
       }
     }
 
@@ -46,3 +76,5 @@ form {
 .form__checkboxGroup {
   @apply flex flex-wrap justify-between mt-7;
 }
+
+//buttons
