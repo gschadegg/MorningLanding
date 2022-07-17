@@ -58,16 +58,6 @@
   .settings_icon {
     @apply mr-4;
   }
-  .settings__closeBtn {
-    @apply text-white/50 transition-all p-1 rounded-full;
-    &:hover,
-    &:focus {
-      @apply text-white/90 bg-white/10;
-    }
-    &:active {
-      @apply text-white bg-white/20;
-    }
-  }
 }
 // .form__label {
 //   @apply text-lg;

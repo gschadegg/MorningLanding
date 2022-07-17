@@ -17,14 +17,14 @@ export default function NewUserMessage({
         <p>A quick dashboard to get your day started with </p>
         <ul>
           <li>Notes from the previous day,</li>
-          <li>Set up three tasks that would make the day a success,</li>
-          <li>Or simply a home for your main links to jump right in</li>
+          <li>The three tasks that would make the day a success,</li>
+          <li>Or simply a home for your primary links to jump right in</li>
         </ul>
         <p>
           Customize the widgets you use to start the day in{' '}
-          <button onClick={toggleSettingsPanel}>Settings</button> and view all
-          the day's Actions in the{' '}
-          <button onClick={toggleActionDrawer}>Action bar</button>.
+          <button onClick={toggleSettingsPanel}>Settings</button> and view what
+          today's focus is in{' '}
+          <button onClick={toggleActionDrawer}>Actions</button>.
         </p>
       </section>
       <OutlinedButton onClick={() => toggleNewUser(false)} classes={['dark']}>

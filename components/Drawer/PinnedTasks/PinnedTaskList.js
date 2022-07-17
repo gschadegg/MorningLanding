@@ -28,9 +28,11 @@ export default function PinnedTaskList() {
     }
   }
   const taskList = useMemo(() => {
-    return pinnedTaskCTX.taskList.map((task) => (
-      <PinnedTask key={task.id} task={task} />
-    ))
+    return pinnedTaskCTX.taskList.map((task) => {
+      if (task) {
+        return <PinnedTask key={task.id} task={task} />
+      }
+    })
   }, [pinnedTaskCTX.taskList])
 
   return (

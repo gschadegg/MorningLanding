@@ -6,6 +6,7 @@ import NotificationContext from '../../store/notification-context'
 import { Formik, Form } from 'formik'
 import styles from './Settings.module.scss'
 import Checkbox from '../UI/Checkbox/Checkbox'
+import CloseButton from '../UI/Buttons/CloseButton/CloseButton'
 
 export default function Settings({ toggleSettingsHandler, classes }) {
   const settingsCXT = useContext(SettingsContext)
@@ -22,18 +23,7 @@ export default function Settings({ toggleSettingsHandler, classes }) {
           />
           Settings
         </h2>
-        <button
-          title="Close Settings"
-          className={styles.settings__closeBtn}
-          onClick={toggleSettingsHandler}
-        >
-          <Icon
-            icon="carbon:close-outline"
-            width={32}
-            rotate={1}
-            inline={true}
-          />
-        </button>
+        <CloseButton onClick={toggleSettingsHandler} title="Close Settings" />
       </section>
       <Formik
         initialValues={{
@@ -87,14 +77,12 @@ export default function Settings({ toggleSettingsHandler, classes }) {
                 role="group"
                 aria-labelledby="checkbox-group"
               >
-                <Checkbox valueName="Quick Links" disabled={true} />
+                <Checkbox valueName="Quick Links" />
                 <Checkbox valueName="Inspirational Quotes" />
-                <Checkbox valueName="Daily Big Three" />
+                <Checkbox valueName="Today's Big Three" />
                 <Checkbox valueName="Pinned Reminders" />
                 <Checkbox valueName="NotePad" />
                 <Checkbox valueName="Gmail Calendar" disabled={true} />
-                {/* <Checkbox valueName="Spotify Player" disabled={true} />
-                 */}
               </div>
             </div>
             <button type="submit" disabled={isSubmitting}>

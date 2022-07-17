@@ -14,18 +14,18 @@ export default function Drawer({ classes, toggleDrawer }) {
   return (
     <article className={`${styles.action_drawer} ${classes.join(' ')}`}>
       <OutlinedButton
-        classes={[`active dark btn-drawerToggle`]}
+        classes={[`active dark btn-drawerToggle reverseIcon`]}
         onClick={toggleDrawer}
       >
+        Close Actions
         <Icon
           icon="clarity:circle-arrow-line"
           width={24}
           rotate={1}
           inline={true}
         />
-        Close Actions
       </OutlinedButton>
-      {activeWidgets['Daily Big Three'] && <BigThree />}
+      {activeWidgets["Today's Big Three"] && <BigThree />}
       {activeWidgets['Pinned Reminders'] ? (
         <PinnedTasksContextProvider>
           <PinnedTaskList />
