@@ -33,7 +33,7 @@ export default function QuickLink({ changeLinkHandler, ql }) {
   useEffect(() => {
     let img
     const checkFavicon = async () => {
-      const img = new Image()
+      img = new Image()
       img.src = `https://www.google.com/s2/favicons?sz=64&domain=${ql.url}`
       await img.decode()
       if (img.width < 64) {
@@ -47,7 +47,7 @@ export default function QuickLink({ changeLinkHandler, ql }) {
     return () => {
       img = null
     }
-  }, [])
+  }, [ql.url, quickLink])
 
   return (
     <article
@@ -102,12 +102,6 @@ export default function QuickLink({ changeLinkHandler, ql }) {
           closeForm={closeFormOnChange}
         />
       )}
-      {/* <QuickLinkForm
-        onSubmit={changeLinkHandler}
-        toggleShowForm={toggleShowFormHandler}
-        content={ql}
-        closeForm={closeFormOnChange}
-      /> */}
     </article>
   )
 }

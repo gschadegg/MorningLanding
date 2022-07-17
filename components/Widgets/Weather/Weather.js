@@ -15,7 +15,7 @@ import { Icon } from '@iconify/react'
 
 const Weather = ({ location }) => {
   const [weather, setWeather] = useState()
-  const notificationCTX = useContext(NotificationContext)
+  const { setUpNotification } = useContext(NotificationContext)
 
   useEffect(() => {
     const getWeather = async () => {
@@ -27,13 +27,13 @@ const Weather = ({ location }) => {
           setWeather(data)
         } else {
           deleteLocalData('ML-weather')
-          notificationCTX.setUpNotification(
+          setUpNotification(
             "Weather couldn't be set for your location right now!",
             'error'
           )
         }
       } catch (error) {
-        notificationCTX.setUpNotification(
+        setUpNotification(
           "Weather couldn't be set for your location right now!",
           'error'
         )
@@ -50,7 +50,7 @@ const Weather = ({ location }) => {
       }
     }
     return () => {}
-  }, [location])
+  }, [location, setUpNotification])
 
   const weatherIcon =
     weather?.weather[0].icon.slice(-1) === 'd'

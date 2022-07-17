@@ -12,7 +12,7 @@ import styles from './Quote.module.scss'
 
 const Quote = ({}) => {
   const [quote, setQuote] = useState()
-  const notificationCTX = useContext(NotificationContext)
+  const { setUpNotification } = useContext(NotificationContext)
   const { activeWidgets } = useContext(SettingsContext)
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const Quote = ({}) => {
         setLocalData('ML-quote', { data, expiryData })
         setQuote(data)
       } else {
-        notificationCTX.setUpNotification("Couldn't find a quote!", 'error')
+        setUpNotification("Couldn't find a quote!", 'error')
       }
     }
 
@@ -38,7 +38,7 @@ const Quote = ({}) => {
       getQuote()
     }
     return () => {}
-  }, [])
+  }, [setUpNotification])
 
   return (
     <section className={styles.quote}>

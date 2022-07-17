@@ -37,19 +37,15 @@ export default function QuickLinks() {
   }
 
   //create list of Quick Link Components
-  if (rawQuickLinks) {
-    quickLinks = useMemo(() => {
-      return rawQuickLinks.map((ql, idx) => {
-        return (
-          <QuickLink
-            key={ql.url}
-            changeLinkHandler={onQLChangeHandler}
-            ql={ql}
-          />
-        )
-      })
-    }, [rawQuickLinks])
-  }
+  // if (rawQuickLinks) {
+  quickLinks = useMemo(() => {
+    return rawQuickLinks?.map((ql, idx) => {
+      return (
+        <QuickLink key={ql.url} changeLinkHandler={onQLChangeHandler} ql={ql} />
+      )
+    })
+  }, [rawQuickLinks])
+  // }
   // if there are quick links stored locally, save to state
   useEffect(() => {
     const quickLinksData = getLocalData('ML-quickLinks')
