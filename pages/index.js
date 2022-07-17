@@ -47,9 +47,6 @@ export default function Home() {
           </button>
         </section>
         <section className={styles.main_col}>
-          {/* {showDrawer ? (
-            ''
-          ) : ( */}
           <OutlinedButton
             classes={[`btn-drawerToggle`, `${showDrawer ? 'invisible' : ''}`]}
             onClick={toggleActionDrawer}
@@ -62,19 +59,20 @@ export default function Home() {
             />
             View the Day's Actions
           </OutlinedButton>
-          {/* )} */}
-          <article className="flex justify-end">
+          <article className="flex justify-end mt-8">
             {/* right col */}
-            {/* {settingsCXT['Quick Links'] && <QuickLinks />} */}
-            {/* <QuickLinks /> */}
-            {settingsCXT.newUser ? (
+            {settingsCXT.newUser && (
               <NewUserMessage
                 toggleNewUser={settingsCXT.setupNewUser}
                 toggleSettingsPanel={toggleSettingsPanel}
                 toggleActionDrawer={toggleActionDrawer}
               />
-            ) : (
+            )}
+            {settingsCXT.activeWidgets['Quick Links'] &&
+            !settingsCXT.newUser ? (
               <QuickLinks />
+            ) : (
+              ''
             )}
           </article>
         </section>

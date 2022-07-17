@@ -149,12 +149,12 @@ export const SettingsContextProvider = (props) => {
       updatingActiveWidgets(localSettings.activeWidgets)
     } else {
       setWidgetsSettings([
-        'Daily Big Three',
+        "Today's Big Three",
         'Pinned Reminders',
         'Inspirational Quotes',
       ])
       updatingActiveWidgets([
-        'Daily Big Three',
+        "Today's Big Three",
         'Pinned Reminders',
         'Inspirational Quotes',
       ])
