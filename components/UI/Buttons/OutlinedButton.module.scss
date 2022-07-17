@@ -1,14 +1,14 @@
 .btn_outlined {
-  @apply flex items-center justify-between border-white border-2 rounded-full text-white text-xl font-bold capitalize leading-6 tracking-wider py-2 px-5 transition-all;
-  font-variant: small-caps;
+  @apply flex items-center justify-between border-white border-2 rounded-full text-white capitalize leading-6 tracking-wider py-2 px-5 transition-all;
+  font-variant: small-caps opacity-100;
   svg {
-    @apply mr-4 transition-all;
+    @apply opacity-100 mr-4 transition-all left-0 relative;
   }
   &:hover,
   &:focus {
     @apply bg-white/10;
     svg {
-      @apply mr-6;
+      @apply left-[-.5rem];
     }
   }
   &[class*='dark'],
@@ -19,17 +19,52 @@
       @apply bg-white/30;
     }
   }
+  &[class*='reverseIcon'] {
+    svg {
+      @apply ml-4 left-0 mr-0;
+    }
+    &:hover,
+    &:focus {
+      svg {
+        @apply left-2;
+      }
+    }
+  }
   &[class*='invisible'] {
-    @apply invisible;
+    @apply invisible opacity-0 transition-all;
+    svg {
+      @apply invisible opacity-0 transition-all;
+    }
   }
   &[class*='active'] {
     @apply z-[100] relative;
   }
   &[class*='btn-drawerToggle'] {
-    @apply mt-[80px] mb-[40px] sm:mt-[12px] sm:mb-0 self-center md:self-end;
+    @apply mt-[80px] mb-[40px] sm:mt-[12px] sm:mb-0 self-center lg:self-end;
 
     &[class*='active'] {
-      @apply mb-[16px]  md:self-end;
+      @apply mb-[16px]  lg:self-end;
     }
+  }
+
+  // sizes
+  &.base {
+    @apply py-2 px-5 text-xl font-bold;
+  }
+  &.sm {
+    @apply py-0.5 px-3 text-base font-normal;
+    svg {
+      @apply left-0 mr-2;
+    }
+    &:hover,
+    &:focus {
+      svg {
+        @apply left-[-.25rem];
+      }
+    }
+  }
+
+  .iconOnly {
+    @apply text-xl;
   }
 }
