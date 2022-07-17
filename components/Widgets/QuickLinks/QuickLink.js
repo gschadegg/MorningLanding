@@ -36,7 +36,7 @@ export default function QuickLink({ changeLinkHandler, ql }) {
       img = new Image()
       img.src = `https://www.google.com/s2/favicons?sz=64&domain=${ql.url}`
       await img.decode()
-      if (img.width < 64) {
+      if (img?.width < 64) {
         setQuickLink({
           ...quickLink,
           image: null,

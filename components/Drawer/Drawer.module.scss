@@ -1,5 +1,5 @@
 .action_drawer {
-  @apply absolute overflow-auto bg-white/50 top-0 right-[-100%] bottom-0 w-full lg:w-[60%] max-w-[960px] backdrop-blur-md pb-[5rem] pt-[.75rem] px-6 md:px-[4rem] flex flex-col;
+  @apply absolute overflow-auto bg-white/50 top-0 right-[-100%] bottom-0 w-full lg:w-[60%] min-h-[100vh] max-w-[960px] backdrop-blur-md pb-[5rem] pt-[.75rem] px-6 md:px-[4rem] flex flex-col;
   transition: right 0.4s ease-in;
 
   &[class*='active'] {

@@ -24,7 +24,11 @@ export default function Notepad() {
   }
 
   return (
-    <DrawerWidget title={`Notepad`} id={styles.notepad} classes={[`column`]}>
+    <DrawerWidget
+      title={`Notepad`}
+      id={styles.notepad}
+      classes={[`column`, 'flex-1']}
+    >
       {inputVisible ? (
         <textarea
           autoFocus
