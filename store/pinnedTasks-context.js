@@ -79,7 +79,6 @@ export const PinnedTasksContextProvider = (props) => {
   }
   //removes single task from list
   const removeTaskFunc = (el) => {
-    console.log(taskList)
     let idx = taskList?.findIndex((task) => task.id === el.id)
     let newList = taskList
 

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { TaskBox } from '../../UI/TaskBox/TaskBox'
 import { useTaskBox } from '../../UI/TaskBox/useTaskBox'
 
-export default function BigThreeTaskTest({ taskNum }) {
+export default function BigThreeTask({ taskNum }) {
   const {
     task,
     status,

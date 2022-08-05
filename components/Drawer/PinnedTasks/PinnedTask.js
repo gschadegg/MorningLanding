@@ -20,7 +20,6 @@ export default function PinnedTask({ task }) {
 
   const deleteTaskHandler = (e) => {
     const inputEl = e.currentTarget.previousElementSibling
-    console.log(inputEl)
     pinnedTaskCTX.removeTaskFunc(inputEl)
   }
 

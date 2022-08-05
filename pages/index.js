@@ -14,6 +14,8 @@ import OutlinedButton from '../components/UI/Buttons/OutlinedButton'
 import QuickLinks from '../components/Widgets/QuickLinks/QuickLinks'
 import NewUserMessage from '../components/NewUserMessage/NewUserMessage'
 
+import { QuickLinkListContextProvider } from '../store/quicklinkList-context'
+
 export default function Home() {
   const [showDrawer, setShowDrawer] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
@@ -70,7 +72,9 @@ export default function Home() {
             )}
             {settingsCXT.activeWidgets['Quick Links'] &&
             !settingsCXT.newUser ? (
-              <QuickLinks />
+              <QuickLinkListContextProvider>
+                <QuickLinks />
+              </QuickLinkListContextProvider>
             ) : (
               ''
             )}

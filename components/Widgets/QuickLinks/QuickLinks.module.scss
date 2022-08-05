@@ -46,7 +46,7 @@
 
 //list
 .quickLinks_list {
-  @apply flex flex-wrap justify-between lg:justify-end mb-40 max-w-[600px] w-full;
+  @apply flex flex-wrap justify-center lg:justify-end mb-40 max-w-[600px] w-full;
   & > * {
     @apply basis-[120px];
   }
