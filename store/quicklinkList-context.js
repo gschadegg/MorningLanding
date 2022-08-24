@@ -22,6 +22,12 @@ export const QuickLinkListContextProvider = (props) => {
         if (qlContent.url === '' && updateIdx >= 0) {
           localQLList.splice(updateIdx, 1)
         } else {
+          if (!qlContent.url?.startsWith('http')) {
+            qlContent.url = `https://${qlContent.url}`
+          }
+          qlContent.image =
+            `https://www.google.com/s2/favicons?sz=64&domain=${qlContent.url}` ||
+            null
           localQLList[updateIdx] = qlContent
           notificationCTX.setUpNotification(
             `Your Quick Link has been updated!`,

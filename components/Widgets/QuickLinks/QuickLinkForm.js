@@ -26,9 +26,9 @@ export default function QuickLinkForm({ onSubmit, content = null, closeForm }) {
         enableReinitialize
         validate={(values) => {
           const errors = {}
-          if (isValidUrl(values.url)) {
-            errors.url = 'Invalid URL!'
-          }
+          // if (isValidUrl(values.url)) {
+          //   errors.url = 'Invalid URL!'
+          // }
 
           return errors
         }}

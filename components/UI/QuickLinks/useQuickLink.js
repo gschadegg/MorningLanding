@@ -55,7 +55,7 @@ function useQuickLink({ ql }) {
     return () => {
       img = null
     }
-  }, [])
+  }, [ql.url])
 
   return {
     quickLink,
